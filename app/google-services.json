@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "617492009467",
+    "firebase_url": "https://food-dine-in-ordering-system-default-rtdb.firebaseio.com",
+    "project_id": "food-dine-in-ordering-system",
+    "storage_bucket": "food-dine-in-ordering-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617492009467:android:fb7fcb101284c27ee6bb5e",
+        "android_client_info": {
+          "package_name": "com.team3.fdiosystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617492009467-8hcfvonqlir6l8upljglbpmlk6hhh14i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQmYV8aaWHJSM7n1Eth9veDi4fPBI6LMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617492009467-8hcfvonqlir6l8upljglbpmlk6hhh14i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
