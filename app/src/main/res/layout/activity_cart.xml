@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<!--    tools:context=".CartActivity">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="Image"
+            tools:text="Image"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="Name"
+            tools:text="Name"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Price"
+            tools:text="Price"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Quantity"
+            tools:text="Quantity"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Total Price"
+            tools:text="Total Price"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cart_recycler_view"
+        android:layout_weight="0.6"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Price: "
+        android:textSize="24sp"
+        android:textFontWeight="@android:integer/config_mediumAnimTime"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="ORDER"/>
+</LinearLayout>
