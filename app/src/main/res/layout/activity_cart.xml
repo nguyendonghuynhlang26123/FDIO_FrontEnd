@@ -62,6 +62,7 @@
         android:textSize="24sp"
         android:textFontWeight="@android:integer/config_mediumAnimTime"/>
     <Button
+        android:id="@+id/ckoutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
