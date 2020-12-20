@@ -9,9 +9,11 @@ import com.google.gson.Gson;
 import com.team3.fdiosystem.BR;
 import com.team3.fdiosystem.Constant;
 import com.team3.fdiosystem.activities.DemoActivity;
+import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.OrderItemModel;
 import com.team3.fdiosystem.models.OrderModel;
 import com.team3.fdiosystem.models.ResponseModel;
+import com.team3.fdiosystem.repositories.services.FoodService;
 import com.team3.fdiosystem.repositories.services.LocalStorage;
 import com.team3.fdiosystem.repositories.services.OrderService;
 
@@ -51,8 +53,17 @@ public class DemoVM extends BaseObservable {
     public void onClick() {
         String data = getText();
         if (data != null && data.length() > 0) {
-            postRequest();
+            //ORDER ---------
+            //postRequest();
             //getRequest();
+
+            //FOOD --------------
+            //foodGetRequest();
+            //foodPostRequest();
+            //foodPutRequest("BZbOSZs8yue0O9LlAaY2");
+            //foodGetRequestById("BZbOSZs8yue0O9LlAaY2");
+            //foodDeleteRequest("GrfATrsVgGsSDAepFTDO");
+            //foodDeleteRequest(new String[]{"Bm92RIV3YbhK9CMtkhrg", "GrfATrsVgGsSDAepFTDO", "It0grOm1rgmuCYBQ2Irq", "oQMmb7PgWg5mY4sHYtjG"});
             setText("");
         }
 
@@ -108,4 +119,134 @@ public class DemoVM extends BaseObservable {
             }
         });
     }
+
+    private void foodGetRequestById(String id){
+        FoodService fService = new FoodService();
+        fService.getFoodById(id).enqueue(new Callback<FoodModel>() {
+            @Override
+            public void onResponse(Call<FoodModel> call, Response<FoodModel> response) {
+                if(!response.isSuccessful()){
+                    setText("Error " + response.code());
+                    return;
+                }
+
+                FoodModel data = response.body();
+                setResponse(new Gson().toJson(data));
+            }
+
+            @Override
+            public void onFailure(Call<FoodModel> call, Throwable t) {
+                setText(t.getMessage());
+            }
+        });
+    }
+
+    private void foodGetRequest(){
+        FoodService fService = new FoodService();
+        fService.getFoods().enqueue(new Callback<FoodModel[]>() {
+            @Override
+            public void onResponse(Call<FoodModel[]> call, Response<FoodModel[]> response) {
+                if(!response.isSuccessful()){
+                    setText("Error " + response.code());
+                    return;
+                }
+
+                FoodModel[] data = response.body();
+                Log.d("LONG", new Gson().toJson(data));
+                setResponse(Integer.toString(data.length));
+            }
+
+            @Override
+            public void onFailure(Call<FoodModel[]> call, Throwable t) {
+                setText(t.getMessage());
+            }
+        });
+    }
+
+    private void foodPostRequest() {
+        FoodService fService = new FoodService();
+        FoodModel cheese = new FoodModel("Cheese","./img.png", "Cheese is so delicious", "food", "100000");
+        fService.createFood(cheese).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(!response.isSuccessful()){
+                    setText("Error " + response.code());
+                    return;
+                }
+
+                ResponseModel chat = response.body();
+                setText(chat.getStatus());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                setText(t.getMessage());
+            }
+        });
+    }
+
+    private void foodPutRequest(String id) {
+        FoodService fService = new FoodService();
+        FoodModel cheese = new FoodModel("Cheese","./img.png", "Cheese is horrible, and tasteless", "food", "100000");
+        fService.updateFood(id, cheese).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(!response.isSuccessful()){
+                    setText("Error " + response.code());
+                    return;
+                }
+
+                ResponseModel chat = response.body();
+                setText(chat.getStatus());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                setText(t.getMessage());
+            }
+        });
+    }
+
+    private void foodDeleteRequest(String id) {
+        FoodService fService = new FoodService();
+        fService.deleteFoodById(id).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(!response.isSuccessful()){
+                    setText("Error " + response.code());
+                    return;
+                }
+
+                ResponseModel chat = response.body();
+                setText(chat.getStatus());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                setText(t.getMessage());
+            }
+        });
+    }
+
+    private void foodDeleteRequest(String[] ids) {
+        FoodService fService = new FoodService();
+        fService.deleteFoodByIdList(ids).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(!response.isSuccessful()){
+                    setText("Error " + response.code());
+                    return;
+                }
+
+                ResponseModel chat = response.body();
+                setText(chat.getStatus());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                setText(t.getMessage());
+            }
+        });
+    }
+
 }
