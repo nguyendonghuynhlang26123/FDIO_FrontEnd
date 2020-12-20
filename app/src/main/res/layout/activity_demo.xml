@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/editText"
-            android:text="@{demo.text}"
+            android:text="@{demo.response}"
             android:layout_centerHorizontal="true"
             />
         <EditText
