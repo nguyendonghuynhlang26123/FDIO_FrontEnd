@@ -13,9 +13,11 @@ import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.OrderItemModel;
 import com.team3.fdiosystem.models.OrderModel;
 import com.team3.fdiosystem.models.ResponseModel;
+import com.team3.fdiosystem.models.UserModel;
 import com.team3.fdiosystem.repositories.services.FoodService;
 import com.team3.fdiosystem.repositories.services.LocalStorage;
 import com.team3.fdiosystem.repositories.services.OrderService;
+import com.team3.fdiosystem.repositories.services.UserService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,6 +66,9 @@ public class DemoVM extends BaseObservable {
             //foodGetRequestById("BZbOSZs8yue0O9LlAaY2");
             //foodDeleteRequest("GrfATrsVgGsSDAepFTDO");
             //foodDeleteRequest(new String[]{"Bm92RIV3YbhK9CMtkhrg", "GrfATrsVgGsSDAepFTDO", "It0grOm1rgmuCYBQ2Irq", "oQMmb7PgWg5mY4sHYtjG"});
+
+            //USER -----------
+            loginRequest(data);
             setText("");
         }
 
@@ -249,4 +254,27 @@ public class DemoVM extends BaseObservable {
         });
     }
 
+    private void loginRequest(String username) {
+        UserService userService = new UserService();
+
+        UserModel user = new UserModel(username, "caonohope");
+
+        userService.login(user).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if(!response.isSuccessful()){
+                    setText("Error " + response.code());
+                    return;
+                }
+
+                ResponseModel chat = response.body();
+                setText(chat.getStatus());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                setText(t.getMessage());
+            }
+        });
+    }
 }
