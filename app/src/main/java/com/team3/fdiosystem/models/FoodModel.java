@@ -3,6 +3,9 @@ package com.team3.fdiosystem.models;
 import com.google.gson.annotations.SerializedName;
 
 public class FoodModel {
+    @SerializedName("_id")
+    transient private String id;
+
     @SerializedName("name")
     private String name;
 
@@ -24,6 +27,14 @@ public class FoodModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getThumbnail() {
