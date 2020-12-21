@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.models.Item;
+import com.team3.fdiosystem.models.Store;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class MenuAdapter extends ArrayAdapter {
         fab.setVisibility(View.INVISIBLE);
         listItemView.setLongClickable(true);
         fab.setOnClickListener(v -> {
-            remove(current_item);
+            Store.get_instance().removeMenu(current_item);
             notifyDataSetChanged();
         });
 //        TextView txt = listItemView.findViewById(R.id.menu_txt);

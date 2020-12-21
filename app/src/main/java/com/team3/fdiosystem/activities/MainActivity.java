@@ -17,6 +17,7 @@ import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.models.Item;
+import com.team3.fdiosystem.models.Store;
 import com.team3.fdiosystem.viewmodels.MenuAdapter;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 //        RecyclerView menuView = (RecyclerView) findViewById(R.id.menu_recycler);
         AsymmetricGridView menuView = findViewById(R.id.Gridview);
         menuView.setRequestedColumnWidth(Utils.dpToPx(this,100));
-        ArrayList<Item> menu = getMenu();
+        ArrayList<Item> menu = Store.get_instance().getMenus();
 
 //        LinearLayoutManager menuLayout = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false);
 //        menuView.setLayoutManager(menuLayout);
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int pos = menu.size();
-                menu.add(new Item(4,4, pos,R.drawable.cfsua_bg));
+                Store.get_instance().addMenu(new Item(4,4, pos,R.drawable.cfsua_bg));
                 adapter.notifyDataSetChanged();
             }
         });
@@ -96,17 +97,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private ArrayList<Item> getMenu(){
-        ArrayList<Item> res = new ArrayList<>(10);
-//        res.add(new ItemGroup(R.drawable.login_bg,R.drawable.foodex,R.drawable.foodex));
-//        System.out.println(res.get(0));
-        res.add(new Item(2,4,0,R.drawable.login_bg));
-        res.add(new Item(2,2,1,R.drawable.customsalad150_250));
-        res.add(new Item(2,2,2,R.drawable.customsalad150_250));
-        res.add(new Item(3,4,3,R.drawable.login_bg));
-        for(int i=4;i<10;++i){
-            res.add(new Item(2+(i%3),3, i,R.drawable.foodex));
-        }
-        return res;
-    }
 }
