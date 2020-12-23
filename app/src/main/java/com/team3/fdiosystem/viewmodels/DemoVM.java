@@ -1,14 +1,20 @@
 package com.team3.fdiosystem.viewmodels;
 
+import android.net.Uri;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 import com.team3.fdiosystem.BR;
 import com.team3.fdiosystem.Constant;
 import com.team3.fdiosystem.activities.DemoActivity;
+import com.team3.fdiosystem.activities.MainActivity;
 import com.team3.fdiosystem.models.FoodListModel;
 import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.OrderItemModel;
@@ -17,6 +23,7 @@ import com.team3.fdiosystem.models.ResponseModel;
 import com.team3.fdiosystem.models.UserModel;
 import com.team3.fdiosystem.repositories.services.FoodListService;
 import com.team3.fdiosystem.repositories.services.FoodService;
+import com.team3.fdiosystem.repositories.services.ImageService;
 import com.team3.fdiosystem.repositories.services.LocalStorage;
 import com.team3.fdiosystem.repositories.services.OrderService;
 import com.team3.fdiosystem.repositories.services.UserService;
@@ -27,6 +34,13 @@ import retrofit2.Response;
 
 public class DemoVM extends BaseObservable {
     private String text;
+    private Uri imageUrl;
+
+    private Event<Boolean> imgChoseEv = new Event<>();
+    public Event getImgChoseEv() {
+        return imgChoseEv;
+    }
+
     @Bindable
     public String getResponse() {
         return response;
@@ -42,6 +56,21 @@ public class DemoVM extends BaseObservable {
 
     public DemoVM(){
         service = new OrderService();
+    }
+
+    @Bindable
+    public Uri getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(Uri imageUrl) {
+        this.imageUrl = imageUrl;
+        notifyPropertyChanged(BR.imageUrl);
+    }
+
+    @BindingAdapter("imageUrl")
+    public static void loadImage(ImageView view, Uri imageUrl) {
+        Picasso.get().load(imageUrl).into(view);
     }
 
     @Bindable
@@ -63,7 +92,7 @@ public class DemoVM extends BaseObservable {
 
             //FOOD --------------
             //foodGetRequest();
-            //foodPostRequest();
+            foodPostRequest();
             //foodPutRequest("BZbOSZs8yue0O9LlAaY2");
             //foodGetRequestById("BZbOSZs8yue0O9LlAaY2");
             //foodDeleteRequest("GrfATrsVgGsSDAepFTDO");
@@ -81,6 +110,7 @@ public class DemoVM extends BaseObservable {
             //USER -----------
             //loginRequest(data);
             setText("");
+
         }
 
     }
@@ -182,6 +212,7 @@ public class DemoVM extends BaseObservable {
     private void foodPostRequest() {
         FoodService fService = new FoodService();
         FoodModel cheese = new FoodModel("Cheese","./img.png", "Cheese is so delicious", "food", "100000");
+        imgChoseEv.trigger();
         fService.createFood(cheese).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
