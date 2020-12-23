@@ -15,11 +15,20 @@
         android:layout_height="match_parent"
         tools:context=".activities.DemoActivity"
         >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:minHeight="200dp"
+            imageUrl="@{demo.imageUrl}"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/editText"
-            android:text="@{demo.text}"
+            android:id="@+id/responseText"
+            android:layout_marginTop="500dp"
+            android:text="@{demo.response}"
             android:layout_centerHorizontal="true"
             />
         <EditText
@@ -28,7 +37,9 @@
             android:id="@+id/editText"
             android:text="@={demo.text}"
             android:minWidth="300dp"
-            android:layout_centerInParent="true"/>
+            android:layout_below="@+id/responseText"
+            android:layout_centerHorizontal="true"
+            />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
