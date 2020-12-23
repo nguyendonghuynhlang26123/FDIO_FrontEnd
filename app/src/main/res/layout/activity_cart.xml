@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-<!--    tools:context=".CartActivity">-->
+    android:orientation="vertical"
+    tools:context=".CartActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -55,13 +55,15 @@
         android:layout_height="1dp"
         android:background="@color/black" />
     <TextView
+        android:id="@+id/ckoutPromo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Price: "
+        android:text="Promotion"
         android:textSize="24sp"
         android:textFontWeight="@android:integer/config_mediumAnimTime"/>
     <Button
+        android:id="@+id/ckoutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

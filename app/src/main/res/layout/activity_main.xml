@@ -7,10 +7,15 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
+    <com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/menu_recycler"/>
+        android:id="@+id/Gridview"
+        tools:ignore="MissingClass"
+
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_fab"
         android:layout_width="wrap_content"
