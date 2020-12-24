@@ -12,18 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FDIOSystem"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.MenuItemModifyForm"></activity>
+        <activity android:name=".activities.MenuHomepage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.MenuContent" />
+        <activity android:name=".activities.ManagementHomepage" />
+        <activity android:name=".activities.MenuItemModifyForm" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".activities.MenuActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.DemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.CartActivity" />
 
