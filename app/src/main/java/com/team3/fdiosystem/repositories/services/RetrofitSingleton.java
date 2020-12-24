@@ -4,6 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.team3.fdiosystem.Constant;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
+
+import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -25,7 +29,12 @@ public class RetrofitSingleton {
     private Retrofit.Builder createAdapter() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        httpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        CookieHandler cookieHandler = new CookieManager();
+
+        httpClient = new OkHttpClient.Builder().addInterceptor(interceptor)
+                .cookieJar(new JavaNetCookieJar(cookieHandler))
+                .build();
 
         Gson gson = new GsonBuilder()
                 .setLenient()
