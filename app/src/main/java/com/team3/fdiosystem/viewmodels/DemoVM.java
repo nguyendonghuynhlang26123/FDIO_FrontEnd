@@ -212,7 +212,7 @@ public class DemoVM extends BaseObservable {
     private void foodPostRequest() {
         FoodService fService = new FoodService();
         FoodModel cheese = new FoodModel("Cheese","./img.png", "Cheese is so delicious", "food", "100000");
-        imgChoseEv.trigger();
+//        imgChoseEv.trigger();
         fService.createFood(cheese).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {

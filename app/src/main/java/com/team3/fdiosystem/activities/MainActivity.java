@@ -50,9 +50,7 @@ public class MainActivity extends AppCompatActivity implements MenuModifyDialog.
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 DialogFragment dialog = new MenuModifyDialog();
                 dialog.show(fragmentManager,"MenuModifier");
-//                int pos = menu.size();
-//                Store.get_instance().addMenu(new Item(4,4, pos,R.drawable.cfsua_bg));
-//                adapter.notifyDataSetChanged();
+
             }
         });
         menuView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,10 +92,11 @@ public class MainActivity extends AppCompatActivity implements MenuModifyDialog.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.cart:
-                Intent i = new Intent(this,CartActivity.class);
-                MainActivity.this.startActivity(i);
+
                 return true;
             case R.id.login:
+                Intent i = new Intent(this,MenuHomepage.class);
+                MainActivity.this.startActivity(i);
                 return true;
         }
 
