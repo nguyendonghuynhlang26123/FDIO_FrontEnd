@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FDIOSystem"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.MenuItemModifyForm"></activity>
         <activity
-            android:name=".activities.ui.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".activities.MenuActivity" />
         <activity android:name=".activities.MainActivity" />

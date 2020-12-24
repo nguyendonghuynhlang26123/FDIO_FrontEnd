@@ -5,10 +5,10 @@ public class MenuItem{
     public int img;
     public String description;
     public String name;
-    public MenuItem(int price, int img){
+    MenuItem(String name, int price, int img, String description){
         this.img = img;
         this.price=price;
-        this.description="Item description";
-        this.name="Item name";
+        this.description=description;
+        this.name=name;
     }
 }
