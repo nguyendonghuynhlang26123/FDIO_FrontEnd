@@ -16,13 +16,15 @@ import androidx.annotation.RequiresApi;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.activities.CartActivity;
+import com.team3.fdiosystem.models.Promotion;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CheckoutDialog extends BottomSheetDialogFragment {
+
     int price;
-    ArrayList<String> promos = new ArrayList<>();
+    ArrayList<Promotion> promos = new ArrayList<>();
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
@@ -36,18 +38,18 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
             final CheckBox Extra_view = new CheckBox(this.getContext());
             Extra_view.setPadding(16,0,0,0);
             Extra_view.setChecked(true);
-            Extra_view.setText(promo);
-            Extra_view.setOnClickListener(v -> {
-
-                myLayout.removeView(Extra_view);
-                CartActivity.removePromotion(promo);
-            });
+            Extra_view.setText(promo.getID());
+//            Extra_view.setOnClickListener(v -> {
+//
+//                myLayout.removeView(Extra_view);
+//                CartActivity.removePromotion(promo);
+//            });
             myLayout.addView(Extra_view, view_index.get());
             view_index.getAndIncrement();
         });
         return view;
     }
-    public CheckoutDialog(int price, ArrayList<String> promos){
+    public CheckoutDialog(int price, ArrayList<Promotion> promos){
         this.price = price;
         this.promos.addAll(promos);
     }

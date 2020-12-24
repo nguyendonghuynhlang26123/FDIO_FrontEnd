@@ -47,14 +47,14 @@ public class PromotionItemAdapter extends RecyclerView.Adapter<PromotionItemAdap
     public void onBindViewHolder(@NonNull ItemView holder, int position) {
         String current_promo_id = list.get(position);
         holder.Id.setText(current_promo_id);
-        holder.choose.setOnClickListener(v -> {
-            if(holder.choose.isChecked()){
-                CartActivity.addPromotion(current_promo_id);
-            }
-            else{
-                CartActivity.removePromotion(current_promo_id);
-            }
-        });
+//        holder.choose.setOnClickListener(v -> {
+//            if(holder.choose.isChecked()){
+//                CartActivity.addPromotion(current_promo_id);
+//            }
+//            else{
+//                CartActivity.removePromotion(current_promo_id);
+//            }
+//        });
     }
 
     @Override
