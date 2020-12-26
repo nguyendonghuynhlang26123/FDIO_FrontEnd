@@ -16,11 +16,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.team3.fdiosystem.Constant;
+import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.activities.DemoActivity;
 
@@ -46,7 +45,7 @@ public class MyFirebaseService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-        LocalStorage.saveData(DemoActivity.getContext(), Constant.TOKEN, s);
+        LocalStorage.saveData(DemoActivity.getContext(), Utils.TOKEN, s);
     }
 
     public void debug() {
@@ -64,7 +63,7 @@ public class MyFirebaseService extends FirebaseMessagingService {
                         String token = task.getResult();
 
                         // Log and toast
-                        LocalStorage.saveData(DemoActivity.getContext(), Constant.TOKEN, token);
+                        LocalStorage.saveData(DemoActivity.getContext(), Utils.TOKEN, token);
                     }
                 });
     }

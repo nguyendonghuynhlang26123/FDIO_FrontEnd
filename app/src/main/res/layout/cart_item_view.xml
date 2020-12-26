@@ -1,42 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="151dp">
-    <LinearLayout
+<layout>
+    <data>
+        <variable
+            name="vm"
+            type="com.team3.fdiosystem.viewmodels.CartItemVM" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_item_img" />
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_item_name"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_item_price"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_item_quantity"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_item_total"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:text="X"
-            android:gravity="center"
-            android:textSize="36sp"/>
+        android:layout_height="151dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/cart_item_img"
+                imgCartItem="@{vm.cartItemImgUrl}"/>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/cart_item_name"
+                android:gravity="center"
+                android:text="@{vm.cartItemName}"/>
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:id="@+id/cart_item_price"
+                android:gravity="center"
+                android:text="@{vm.cartItemPrice}"/>
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="-"
+                    android:textSize="25sp"
+                    android:onClick="@{()->vm.decreaseQuantity()}"
+                    />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/cart_item_quantity"
+                    android:textSize="20sp"
+                    android:text="@{vm.cartitemQuantity}"
+                    android:gravity="center"
+                    />
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="+"
+                    android:textSize="25sp"
+                    android:onClick="@{()->vm.increaseQuantity()}"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:id="@+id/cart_item_total"
+                android:gravity="center"
+                android:text="@{vm.cartItemTotalPrice}"
+                />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="X"
+                android:gravity="center"
+                android:textSize="36sp"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

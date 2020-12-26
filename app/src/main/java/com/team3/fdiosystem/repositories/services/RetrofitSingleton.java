@@ -2,7 +2,7 @@ package com.team3.fdiosystem.repositories.services;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.team3.fdiosystem.Constant;
+import com.team3.fdiosystem.Utils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -41,7 +41,7 @@ public class RetrofitSingleton {
                 .create();
 
         return new Retrofit.Builder()
-                .baseUrl(Constant.BACK_END_API_PATH)
+                .baseUrl(Utils.BACK_END_API_PATH)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient);
     }

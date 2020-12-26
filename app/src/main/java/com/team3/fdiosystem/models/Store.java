@@ -1,32 +1,24 @@
 package com.team3.fdiosystem.models;
 
-import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.team3.fdiosystem.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Store {
-    private static volatile Store _instance;
-    ArrayList<Promotion> promo_list;
-    HashMap<String, ArrayList<String>> menu;
-    ArrayList<MenuItem> menuItems;
-    public ArrayList<Item> items;
-    public Cart cart;
+    //Variables
+    private ArrayList<FoodListModel> menu;
+    private Cart cart;
     private Store(){
-        promo_list = new ArrayList<>();
-        items = new ArrayList<>();
-        menuItems = new ArrayList<>();
-        menu = new HashMap<>();
+        menu = new ArrayList<>();
         cart = new Cart();
-        InitMenu();
-//        InitMenuItem();
-//        InitPromo();
     }
 
+    //Singleton
+    private static volatile Store _instance;
     public static Store get_instance() {
         if(_instance == null){
             synchronized (Store.class){
@@ -37,78 +29,52 @@ public class Store {
         }
         return _instance;
     }
-    public Item getMenuByName(String name){
-        return items.get(items.indexOf(name));
+
+    //Functions
+    
+    
+    //Getter Setter
+    public ArrayList<FoodListModel> getMenu() {
+        return menu;
     }
-    public MenuItem getMenuItemByName(String name){
-        for(int i=0;i<menuItems.size();++i){
-            if(menuItems.get(i).name==name){
-                return menuItems.get(i);
+
+    public void setMenu(ArrayList<FoodListModel> menu) {
+        this.menu = menu;
+        Log.i("STORE_", new Gson().toJson(this.menu));
+    }
+
+    public FoodListModel getMenuById(String id){
+        for (FoodListModel foodlist: menu ) {
+            if (foodlist.getId().equalsIgnoreCase(id)) return foodlist;
+        }
+        return null;
+    }
+
+    public FoodModel getModelById(String id){
+        for (FoodListModel foodlist: menu ) {
+            for (int i = 0; i < foodlist.getFoodIdList().length; i++) {
+                if(foodlist.getFoodIdList()[i].equalsIgnoreCase(id))
+                    return foodlist.getFoodList()[i];
             }
         }
         return null;
     }
-    public ArrayList<Promotion> getPromos(){
-        return promo_list;
-    }
-    public void addMenu(Item menu){
-        items.add(menu);
-    }
-    public void removeMenu(Item menu){
-        items.remove(menu);
-    }
-    private void InitPromo(){
-        for(int i=0;i<10;++i){
-            promo_list.add(new Promotion("Test"+i,menuItems,50+i));
-        }
-    }
-    private void InitMenu(){
-        items.add(new Item(3,4,0,R.drawable.login_bg));
-        items.add(new Item(2,2,1,R.drawable.customsalad150_250));
-        items.add(new Item(2,2,2,R.drawable.customsalad150_250));
-        items.add(new Item(2,4,3,R.drawable.login_bg));
-        for(int i=4;i<10;++i){
-            items.add(new Item(3+(i%3),4, i,R.drawable.foodex));
-        }
-    }
-    private void InitMenuItem(){
-        for(int i=0;i<10;++i){
-            menuItems.add(new MenuItem("Item name "+i,i, R.drawable.customsalad150_250,"Item description"));
-        }
-    }
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void addToCart(MenuItem item, int quantity){
-        CartItem citem = new CartItem(item.name, item.price, item.img, quantity);
-        promo_list.forEach(promotion -> {
-            int ckoutPrice = promotion.apply(citem);
-            if(ckoutPrice < citem.getCkout_price()){
-                citem.setCkout_price(ckoutPrice);
-                cart.promotions.add(promotion);
-            }
-        });
-        cart.cart.add(citem);
+
+    public Cart getCart() {
+        return cart;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void addMenuItem(String name, int price, int img, String description, int type){
-        MenuItem menuItem = new MenuItem(name,price,img, description);
-        Item current_menu = items.get(type);
-        menuItems.add(menuItem);
-        menu.computeIfAbsent(current_menu.name,k->new ArrayList<>()).add(menuItem.name);
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
+    public void addToCart(CartItem item){
+        this.cart.addItem(item);
+    }
 
+    public void setNote(String note) {this.cart.setNote(note);}
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public ArrayList<MenuItem> getMenuItems(int type){
-        ArrayList<MenuItem> res= new ArrayList<>();
-        Item current_menu = items.get(type);
-        ArrayList<String> menu_items = menu.get(current_menu.name);
-        if(menu_items!=null) {
-            menu_items.forEach(item -> {
-                res.add(getMenuItemByName(item));
-            });
-        }
-        return res;
+    public void resetCart(){
+        this.cart = new Cart();
     }
 }

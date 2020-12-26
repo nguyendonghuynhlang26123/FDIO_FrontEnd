@@ -3,7 +3,6 @@ package com.team3.fdiosystem.activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.content.BroadcastReceiver;
@@ -15,14 +14,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.team3.fdiosystem.Constant;
+import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.databinding.ActivityDemoBinding;
 import com.team3.fdiosystem.repositories.services.ImageService;
 import com.team3.fdiosystem.repositories.services.LocalStorage;
 import com.team3.fdiosystem.viewmodels.DemoVM;
-
-import java.net.URI;
 
 public class DemoActivity extends AppCompatActivity {
     static Context context;
@@ -40,16 +37,14 @@ public class DemoActivity extends AppCompatActivity {
         setupBinding();
         setupBroadcastListener();
 
-        Log.i("TOKEN", LocalStorage.getData(this, Constant.TOKEN));
+        Log.i("TOKEN", LocalStorage.getData(this, Utils.TOKEN));
     }
 
     private void setupBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_demo);
         demo = new DemoVM();
         binding.setDemo(demo);
-        demo.getImgChoseEv().bindEvent(this, aBoolean -> {
-            startActivityForResult(ImageService.fileChoserIntent(), ImageService.PICK_IMAGE_REQUEST);
-        });
+
     }
 
     @Override

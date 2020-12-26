@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class FoodListModel {
     @SerializedName("_id")
-    @Expose (serialize = false)
+    @Expose
     private String id;
 
     @SerializedName("name")
@@ -22,10 +22,23 @@ public class FoodListModel {
     @SerializedName("thumbnail")
     private String thumbnail;
 
+    @SerializedName("ui_type")
+    private int ui_type;
+
     public FoodListModel(String name, String thumbnail) {
+        this.id="";
         this.name = name;
         this.foodIdList = new String[]{};
         this.thumbnail = thumbnail;
+    }
+
+    public FoodListModel(String id, String name, String[] foodIdList, FoodModel[] foodList, String thumbnail, int ui_type) {
+        this.id = id;
+        this.name = name;
+        this.foodIdList = foodIdList;
+        this.foodList = foodList;
+        this.thumbnail = thumbnail;
+        this.ui_type = ui_type;
     }
 
     public String getId() {
@@ -66,5 +79,13 @@ public class FoodListModel {
 
     public void setFoodList(FoodModel[] foodList) {
         this.foodList = foodList;
+    }
+
+    public int getUi_type() {
+        return ui_type;
+    }
+
+    public void setUi_type(int ui_type) {
+        this.ui_type = ui_type;
     }
 }

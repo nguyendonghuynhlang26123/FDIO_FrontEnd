@@ -1,20 +1,20 @@
 package com.team3.fdiosystem.viewmodels;
 
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
-import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.team3.fdiosystem.BR;
-import com.team3.fdiosystem.Constant;
+import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.activities.DemoActivity;
-import com.team3.fdiosystem.activities.MainActivity;
 import com.team3.fdiosystem.models.FoodListModel;
 import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.OrderItemModel;
@@ -23,7 +23,6 @@ import com.team3.fdiosystem.models.ResponseModel;
 import com.team3.fdiosystem.models.UserModel;
 import com.team3.fdiosystem.repositories.services.FoodListService;
 import com.team3.fdiosystem.repositories.services.FoodService;
-import com.team3.fdiosystem.repositories.services.ImageService;
 import com.team3.fdiosystem.repositories.services.LocalStorage;
 import com.team3.fdiosystem.repositories.services.OrderService;
 import com.team3.fdiosystem.repositories.services.UserService;
@@ -36,10 +35,6 @@ public class DemoVM extends BaseObservable {
     private String text;
     private Uri imageUrl;
 
-    private Event<Boolean> imgChoseEv = new Event<>();
-    public Event getImgChoseEv() {
-        return imgChoseEv;
-    }
 
     @Bindable
     public String getResponse() {
@@ -115,12 +110,13 @@ public class DemoVM extends BaseObservable {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void postRequest() {
-        OrderItemModel fish = new OrderItemModel("pNYkZOdzPyaa2WFat5eq", 1, "waiting");
-        OrderItemModel veggies = new OrderItemModel("ytO0txHHIcBh0SKdhD9v", 2, "waiting");
+        OrderItemModel fish = new OrderItemModel("pNYkZOdzPyaa2WFat5eq", 1 );
+        OrderItemModel veggies = new OrderItemModel("ytO0txHHIcBh0SKdhD9v", 2);
         OrderItemModel[] list= {fish, veggies};
 
-        String token = LocalStorage.getData(DemoActivity.getContext(), Constant.TOKEN);
+        String token = LocalStorage.getData(DemoActivity.getContext(), Utils.TOKEN);
         OrderModel order = new OrderModel(
                 "da","da","Khong hanh", "12",token,list
         );

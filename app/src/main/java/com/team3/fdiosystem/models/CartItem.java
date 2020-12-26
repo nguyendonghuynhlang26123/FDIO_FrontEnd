@@ -1,17 +1,24 @@
 package com.team3.fdiosystem.models;
 
-public class CartItem extends MenuItem {
-    public int quantity;
-    public int ckout_price;
-    CartItem(String name, int price, int img, int quantity) {
-        super(name, price, img, "");
-        this.quantity = quantity;
-        ckout_price = price*quantity;
+public class CartItem extends OrderItemModel{
+    private int price;
+
+    public int getPrice() {
+        return price;
     }
-    public int getCkout_price(){
-        return ckout_price;
+
+    public void setPrice(int price) {
+        this.price = price;
     }
-    public void setCkout_price(int ckout_price){
-        this.ckout_price = ckout_price;
+
+    public CartItem(String id, Integer quantity, int price) {
+        super(id, quantity);
+        this.price = price;
     }
+
+    public CartItem(FoodModel item, int quantity) {
+        super(item.getId(), quantity);
+        this.price = Integer.parseInt(item.getPrice());
+    }
+
 }

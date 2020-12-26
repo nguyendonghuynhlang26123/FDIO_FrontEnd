@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class OrderItemModel {
     @SerializedName("food")
     @Expose
-    private String food;
+    private String id;
     @SerializedName("quantity")
     @Expose
     private Integer quantity;
@@ -14,18 +14,17 @@ public class OrderItemModel {
     @Expose
     private String status = "waiting";
 
-    public OrderItemModel(String food, Integer quantity, String status) {
-        this.food = food;
+    public OrderItemModel(String id, Integer quantity ) {
+        this.id = id;
         this.quantity = quantity;
-        this.status = status;
     }
 
-    public String getFood() {
-        return food;
+    public String getId() {
+        return id;
     }
 
-    public void setFood(String food) {
-        this.food = food;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Integer getQuantity() {
