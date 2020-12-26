@@ -20,14 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MenuContent" />
+        <activity android:name=".activities.MenuContent" android:parentActivityName=".activities.MenuHomepage"/>
+        <activity android:name=".activities.OrderedCheckActivity" android:parentActivityName=".activities.MenuHomepage"/>
 <!--        <activity android:name=".activities.ManagementHomepage" />-->
 <!--        <activity android:name=".activities.MenuItemModifyForm" />-->
 <!--        <activity android:name=".activities.MenuActivity" />-->
 <!--        <activity android:name=".activities.MainActivity" />-->
         <activity android:name=".activities.DemoActivity" />
-        <activity android:name=".activities.LoginActivity"/>
-        <activity android:name=".activities.CartActivity" />
+        <activity android:name=".activities.LoginActivity" android:parentActivityName=".activities.MenuHomepage"/>
+        <activity android:name=".activities.CartActivity" android:parentActivityName=".activities.MenuHomepage"/>
 
         <service
             android:name=".repositories.services.MyFirebaseService"

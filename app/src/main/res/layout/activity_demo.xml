@@ -21,6 +21,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
             android:minHeight="200dp"
+            android:scaleType="centerCrop"
             imageUrl="@{demo.imageUrl}"
             />
         <TextView

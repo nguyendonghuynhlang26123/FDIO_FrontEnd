@@ -12,9 +12,12 @@ public class Store {
     //Variables
     private ArrayList<FoodListModel> menu;
     private Cart cart;
+    private ArrayList<OrderItemModel> orderedList;
+
     private Store(){
         menu = new ArrayList<>();
         cart = new Cart();
+        orderedList = new ArrayList<>();
     }
 
     //Singleton
@@ -76,5 +79,17 @@ public class Store {
 
     public void resetCart(){
         this.cart = new Cart();
+    }
+
+    public ArrayList<OrderItemModel> getOrderedList() {
+        return orderedList;
+    }
+
+    public void setOrderedList(ArrayList<OrderItemModel> orderedList) {
+        this.orderedList = orderedList;
+    }
+
+    public void appendOrderedList(ArrayList<OrderItemModel> orderedList) {
+        this.orderedList.addAll(orderedList);
     }
 }

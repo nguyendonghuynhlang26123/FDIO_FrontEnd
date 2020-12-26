@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.databinding.ActivityLoginBinding;
 import com.team3.fdiosystem.models.ResponseModel;
@@ -26,11 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         vm = new LoginVM();
         binding.setVm(vm);
@@ -60,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     vm.setNotify(response.body().getErr());
+                    Snackbar.make(findViewById(R.id.login_main), "Login failed"
+                            ,Snackbar.LENGTH_LONG).show();
                 }
             }
 

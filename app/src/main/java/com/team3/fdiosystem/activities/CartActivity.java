@@ -1,11 +1,13 @@
 package com.team3.fdiosystem.activities;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -21,11 +23,10 @@ import com.team3.fdiosystem.viewmodels.adapters.CartAdapter;
 
 import java.util.ArrayList;
 
-public class CartActivity extends FragmentActivity {
+public class CartActivity extends AppCompatActivity {
     private ActivityCartBinding binding;
     private int total_price = 0;
     private CartAdapter adapter ;
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -34,8 +35,8 @@ public class CartActivity extends FragmentActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cart);
         binding.cartRecyclerView.setLayoutManager(new LinearLayoutManager(CartActivity.this, LinearLayoutManager.VERTICAL, false));
 
+        //Recycle item trigger events call the activity to re-render the view
         Event refreshEvent = this::loadDataFromStore;
-
         adapter = new CartAdapter(this, new ArrayList<>());
         adapter.setRequestRefresh(refreshEvent);
         binding.cartRecyclerView.setAdapter(adapter);

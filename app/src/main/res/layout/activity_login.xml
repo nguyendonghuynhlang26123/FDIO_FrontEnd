@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#455357"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:id="@+id/login_main">
 
 
         <TextView

@@ -8,7 +8,9 @@ import androidx.annotation.RequiresApi;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.team3.fdiosystem.BR;
@@ -23,12 +25,14 @@ public class FoodItemVM extends BaseObservable {
     private String name;
     private String imgUrl;
     private String id;
+    private MutableLiveData<String> addBtnCallBack;
 
     public FoodItemVM(String id, String price, String name, String imgUrl) {
         this.price = price;
         this.name = name;
         this.imgUrl = imgUrl;
         this.id = id;
+        this.addBtnCallBack = new MutableLiveData<>();
 
         setPrice(price);
         setName(name);
@@ -80,6 +84,11 @@ public class FoodItemVM extends BaseObservable {
         notifyPropertyChanged(BR.imgUrl);
     }
 
+    public MutableLiveData<String> getAddBtnCallBack() {
+        return addBtnCallBack;
+    }
+
+
     public void addItemToCart() {
         FoodModel foodModel = Store.get_instance().getModelById(this.id);
 
@@ -87,5 +96,8 @@ public class FoodItemVM extends BaseObservable {
             CartItem item = new CartItem(foodModel,1);
             Store.get_instance().addToCart(item);
         }
+
+        if(addBtnCallBack != null)
+            addBtnCallBack.setValue(this.name);
     }
 }
