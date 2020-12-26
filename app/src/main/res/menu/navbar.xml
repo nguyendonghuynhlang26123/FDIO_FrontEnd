@@ -5,6 +5,10 @@
     <!--        android:icon="@drawable/ic_launcher_background"-->
     <!--        android:title="@string/app_name"-->
     <!--        app:showAsAction="ifRoom" />-->
+    <item android:id="@+id/ordered_check"
+        android:icon="@drawable/ic_ordered_icon"
+        app:showAsAction="always"
+        android:title="@string/app_name"/>
     <item android:id="@+id/cart"
         android:icon="@drawable/ic_cart_icon"
         android:title="@string/app_name"

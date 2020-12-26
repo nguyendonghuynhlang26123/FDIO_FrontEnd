@@ -10,29 +10,35 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.TextView;
 
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.models.MenuItem;
 import com.team3.fdiosystem.models.Store;
 import com.team3.fdiosystem.viewmodels.MenuItemAdapter;
+import com.team3.fdiosystem.viewmodels.OrderedItemAdapter;
 
 import java.util.ArrayList;
 
-public class MenuContent extends AppCompatActivity {
-    ArrayList<MenuItem> menuList;
+public class OrderedCheck extends AppCompatActivity {
+    ArrayList<Store.OrderedItem> list;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_content);
+        setContentView(R.layout.activity_ordered_check);
         RecyclerView menuView = findViewById(R.id.recyclerview);
-        Intent i = getIntent();
-        int type = i.getIntExtra("type",0);
-        menuList = Store.get_instance().getMenuItems(type);
-        MenuItemAdapter adapter = new MenuItemAdapter(this,menuList);
-        GridLayoutManager horizontalLayout = new GridLayoutManager(MenuContent.this,2,GridLayoutManager.HORIZONTAL,false);
-        menuView.setLayoutManager(horizontalLayout);
+//        Intent i = getIntent();
+//        int type = i.getIntExtra("type",0);
+        list = Store.get_instance().getOrderedList();
+        OrderedItemAdapter adapter = new OrderedItemAdapter(this,list);
+        GridLayoutManager vLayout = new GridLayoutManager(OrderedCheck.this,2,GridLayoutManager.VERTICAL,false);
+        menuView.setLayoutManager(vLayout);
         menuView.setAdapter(adapter);
+        TextView order_id = findViewById(R.id.ordered_id);
+        TextView order_time = findViewById(R.id.ordered_time);
+//        order_id.setText("000000001");
+//        order_time.setText("12:00:00 Mon 12/Dec/2020");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,15 +51,11 @@ public class MenuContent extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.cart:
                 Intent i = new Intent(this,CartActivity.class);
-                MenuContent.this.startActivity(i);
+                OrderedCheck.this.startActivity(i);
                 return true;
             case R.id.login:
-                Intent l = new Intent(this, ManagementHomepage.class);
-                MenuContent.this.startActivity(l);
-                return true;
-            case R.id.ordered_check:
-                Intent o = new Intent(this, OrderedCheck.class);
-                MenuContent.this.startActivity(o);
+                Intent l = new Intent(this,ManagementHomepage.class);
+                OrderedCheck.this.startActivity(l);
                 return true;
         }
 

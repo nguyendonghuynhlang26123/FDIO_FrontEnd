@@ -111,4 +111,22 @@ public class Store {
         }
         return res;
     }
+    public class OrderedItem{
+        public int img;
+        public String name;
+        public String status;
+        public int quantity;
+        public OrderedItem(){
+            img=R.drawable.customsalad150_250;
+            name="Salad ca ngu";
+            quantity = 1;
+        }
+    }
+    public ArrayList<OrderedItem> getOrderedList(){
+        ArrayList<OrderedItem> res = new ArrayList<>();
+        for(int i=0;i<10;++i){
+            res.add(new OrderedItem());
+        }
+        return res;
+    }
 }

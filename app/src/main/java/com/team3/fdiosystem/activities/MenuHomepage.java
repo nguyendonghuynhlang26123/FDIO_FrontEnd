@@ -71,6 +71,10 @@ public class MenuHomepage extends AppCompatActivity {
                 Intent l = new Intent(this, ManagementHomepage.class);
                 MenuHomepage.this.startActivity(l);
                 return true;
+            case R.id.ordered_check:
+                Intent o = new Intent(this, OrderedCheck.class);
+                MenuHomepage.this.startActivity(o);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500dp"
+    android:layout_height="300dp"
+    android:id="@+id/card_holder"
+    android:backgroundTint="@color/cardview_shadow_end_color"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="50dp"
+    card_view:cardElevation="12dp"
+    card_view:cardUseCompatPadding="true">
+    <GridLayout
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="192dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/customsalad150_250"
+            android:id="@+id/thumb_img"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salad ca ngu"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:id="@+id/ordered_item_name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textSize="25sp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="25sp"
+                android:layout_marginLeft="25dp"
+                android:id="@+id/ordered_item_quantity"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:textSize="25sp"
+                android:textColor="@color/teal_200"
+                android:layout_marginTop="15dp"
+                android:id="@+id/ordered_item_stat"/>
+
+        </LinearLayout>
+
+
+    </GridLayout>
+
+</androidx.cardview.widget.CardView>
