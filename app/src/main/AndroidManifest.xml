@@ -26,6 +26,7 @@
 <!--        <activity android:name=".activities.MenuActivity" />-->
 <!--        <activity android:name=".activities.MainActivity" />-->
         <activity android:name=".activities.DemoActivity" />
+        <activity android:name=".activities.LoginActivity"/>
         <activity android:name=".activities.CartActivity" />
 
         <service

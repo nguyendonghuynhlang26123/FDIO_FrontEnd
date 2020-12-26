@@ -74,6 +74,8 @@ public class MenuContent extends AppCompatActivity {
                 MenuContent.this.startActivity(i);
                 return true;
             case R.id.login:
+                Intent l = new Intent(this, LoginActivity.class);
+                this.startActivity(l);
                 return true;
         }
 

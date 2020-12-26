@@ -55,8 +55,8 @@ public class MenuHomepage extends AppCompatActivity {
                 MenuHomepage.this.startActivity(i);
                 return true;
             case R.id.login:
-//                Intent l = new Intent(this, ManagementHomepage.class);
-//                MenuHomepage.this.startActivity(l);
+                Intent l = new Intent(this, LoginActivity.class);
+                MenuHomepage.this.startActivity(l);
                 return true;
         }
 

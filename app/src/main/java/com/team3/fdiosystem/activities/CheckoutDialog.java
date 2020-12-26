@@ -84,6 +84,7 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
 
         binding.proceedOrderBtn.setOnClickListener(t ->{
             OrderModel order = getOrderFromCart();
+            if (order.getList_order_item().length == 0) return;
             binding.checkoutProgressbar.setVisibility(View.VISIBLE);
 
             OrderService orderService = new OrderService();

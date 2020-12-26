@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.Utils;
@@ -57,10 +58,12 @@ public class CartActivity extends FragmentActivity {
         binding.cartPrice.setText(Utils.format.format(total_price));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Event onDialogDimissed(){
         return () -> {
             Store.get_instance().resetCart();
             adapter.setData(new ArrayList<>());
+            loadDataFromStore();
         };
     }
 
@@ -74,6 +77,9 @@ public class CartActivity extends FragmentActivity {
 
         setPrice(items);
         adapter.setData(vms);
+
+        if (adapter.getItemCount() == 0)
+            binding.ckoutBtn.setVisibility(View.GONE);
     }
 
 }
