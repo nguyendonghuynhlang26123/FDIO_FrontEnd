@@ -3,6 +3,7 @@ package com.team3.fdiosystem.activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.databinding.ActivityMenuContentBinding;
@@ -51,8 +53,16 @@ public class MenuContent extends AppCompatActivity {
             FoodModel[] foodModels =  flist.getFoodList();
 
             for (FoodModel foodModel : foodModels) {
-                vms.add(new FoodItemVM(foodModel.getId(), foodModel.getPrice(),
-                        foodModel.getName(), foodModel.getThumbnail()));
+                FoodItemVM vm = new FoodItemVM(foodModel.getId(), foodModel.getPrice(),
+                        foodModel.getName(), foodModel.getThumbnail());
+                vm.getAddBtnCallBack().observe(this, new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        Snackbar.make(binding.menuContentMain, s + " is added to cart!",
+                                Snackbar.LENGTH_LONG).show();
+                    }
+                });
+                vms.add(vm);
             }
         }
 
@@ -74,6 +84,12 @@ public class MenuContent extends AppCompatActivity {
                 MenuContent.this.startActivity(i);
                 return true;
             case R.id.login:
+                Intent l = new Intent(this, LoginActivity.class);
+                this.startActivity(l);
+                return true;
+            case R.id.ordered_check:
+                Intent o = new Intent(this, OrderedCheckActivity.class);
+                MenuContent.this.startActivity(o);
                 return true;
         }
 

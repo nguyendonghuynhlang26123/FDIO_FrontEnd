@@ -2,6 +2,7 @@ package com.team3.fdiosystem.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -42,6 +43,9 @@ import com.team3.fdiosystem.repositories.services.LocalStorage;
 import com.team3.fdiosystem.repositories.services.OrderService;
 import com.team3.fdiosystem.viewmodels.Event;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,14 +88,18 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
 
         binding.proceedOrderBtn.setOnClickListener(t ->{
             OrderModel order = getOrderFromCart();
+            if (order.getList_order_item().length == 0) return;
+
             binding.checkoutProgressbar.setVisibility(View.VISIBLE);
 
             OrderService orderService = new OrderService();
             orderService.createOrder(order).enqueue(new Callback<ResponseModel>() {
                 @Override
                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                    Log.i("ORDER_", response.body().getStatus());
                     binding.checkoutProgressbar.setVisibility(View.GONE);
+
+                    Store.get_instance().appendOrderedList(new ArrayList<>(Arrays.asList(order.getList_order_item())));
+
                     close();
                 }
 
@@ -105,13 +113,15 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
     }
 
     private void close(){
-        callback.trigger();
         binding.orderPrice.setText("");
         binding.orderNote.setText("");
-        this.dismiss();
+        callback.trigger();
+//        this.dismiss();
+        Intent o = new Intent(getActivity(), OrderedCheckActivity.class);
+        startActivity(o);
     }
 
-
+    //Set bottom sheet full size
     private void setFullSize(View view) {
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
