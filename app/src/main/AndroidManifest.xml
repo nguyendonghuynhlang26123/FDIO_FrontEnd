@@ -29,6 +29,7 @@
         <activity android:name=".activities.DemoActivity" />
         <activity android:name=".activities.LoginActivity" android:parentActivityName=".activities.MenuHomepage"/>
         <activity android:name=".activities.CartActivity" android:parentActivityName=".activities.MenuHomepage"/>
+        <activity android:name=".activities.FoodDetailActivity" android:parentActivityName=".activities.MenuHomepage"/>
 
         <service
             android:name=".repositories.services.MyFirebaseService"

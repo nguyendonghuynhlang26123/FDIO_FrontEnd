@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.team3.fdiosystem.models.FoodListModel;
 import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.Store;
 import com.team3.fdiosystem.repositories.services.FoodListService;
+import com.team3.fdiosystem.viewmodels.Event;
 import com.team3.fdiosystem.viewmodels.FoodItemVM;
 import com.team3.fdiosystem.viewmodels.adapters.FoodItemAdapter;
 
@@ -95,5 +97,6 @@ public class MenuContent extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

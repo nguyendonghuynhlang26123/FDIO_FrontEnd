@@ -1,6 +1,7 @@
 package com.team3.fdiosystem.viewmodels.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.team3.fdiosystem.R;
+import com.team3.fdiosystem.activities.FoodDetailActivity;
 import com.team3.fdiosystem.databinding.RecyclerItemBinding;
+import com.team3.fdiosystem.viewmodels.Event;
 import com.team3.fdiosystem.viewmodels.FoodItemVM;
 
 import java.util.ArrayList;
@@ -48,6 +51,11 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.FoodIt
         FoodItemVM item = items.get(position);
 
         holder.itemBinding.setVm(item);
+        holder.itemBinding.getRoot().setOnClickListener(v -> {
+            Intent intent = new Intent(context, FoodDetailActivity.class);
+            intent.putExtra("id", item.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -58,7 +66,7 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.FoodIt
     public static class FoodItemViewHolder extends RecyclerView.ViewHolder {
         RecyclerItemBinding itemBinding;
 
-        public FoodItemViewHolder(@NonNull RecyclerItemBinding itemView) {
+        public FoodItemViewHolder(@NonNull RecyclerItemBinding itemView ) {
             super(itemView.getRoot());
             itemBinding = itemView;
         }
