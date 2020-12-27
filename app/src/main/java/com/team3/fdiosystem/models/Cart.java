@@ -31,7 +31,7 @@ public class Cart {
     public void addItem(CartItem item) {
         int index = getItemIndexById(item.getId());
         if (index != -1)
-            this.items.get(index).setQuantity(this.items.get(index).getQuantity() + 1);
+            this.items.get(index).setQuantity(this.items.get(index).getQuantity() + item.getQuantity());
         else this.items.add(item);
     }
 

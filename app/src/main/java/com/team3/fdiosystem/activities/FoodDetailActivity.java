@@ -7,7 +7,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.databinding.ActivityFoodDetailBinding;
@@ -27,7 +29,12 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         FoodModel model = Store.get_instance().getModelById(id);
         Log.i("FOOD_DETAIL", new Gson().toJson(model));
-        binding.setVm(new FoodDetailVM(model.getName(), 1, model.getDescription(), model.getThumbnail()));
 
+        FoodDetailVM vm = new FoodDetailVM(model);
+        binding.setVm(vm);
+        vm.getCallback().observe(this, s -> {
+            Log.i("OBSERVE", s);
+            Snackbar.make(binding.foodDetailContent, s + " is added into your cart!", Snackbar.LENGTH_LONG).show();
+        });
     }
 }

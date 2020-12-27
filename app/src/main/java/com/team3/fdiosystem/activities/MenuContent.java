@@ -42,7 +42,6 @@ public class MenuContent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_menu_content);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_menu_content);
         binding.recyclerview.setLayoutManager(new GridLayoutManager(MenuContent.this, 2, GridLayoutManager.HORIZONTAL, false));
 

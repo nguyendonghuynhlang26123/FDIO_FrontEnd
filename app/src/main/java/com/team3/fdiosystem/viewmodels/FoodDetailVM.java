@@ -1,25 +1,38 @@
 package com.team3.fdiosystem.viewmodels;
 
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.MutableLiveData;
 
 import com.squareup.picasso.Picasso;
 import com.team3.fdiosystem.BR;
+import com.team3.fdiosystem.models.CartItem;
+import com.team3.fdiosystem.models.FoodModel;
+import com.team3.fdiosystem.models.Store;
 
 public class FoodDetailVM extends BaseObservable {
-    private String foodName;
+    private FoodModel foodModel;
     private int foodQuantity;
-    private String foodDescription;
-    private String foodImgUrl;
+    private MutableLiveData<String> callback;
 
-    public FoodDetailVM(String foodName, int foodQuantity, String foodDescription, String foodImgUrl) {
-        setFoodDescription(foodDescription);
-        setFoodName(foodName);
-        setFoodQuantity(foodQuantity);
-        setFoodImgUrl(foodImgUrl);
+    public FoodDetailVM(FoodModel model) {
+        foodModel = model;
+        this.callback = new MutableLiveData<>();
+
+        setFoodQuantity(1);
+        notifyPropertyChanged(BR.foodImgUrl);
+        notifyPropertyChanged(BR.foodName);
+        notifyPropertyChanged(BR.foodDescription);
+    }
+
+    public MutableLiveData<String> getCallback() {
+        return callback;
     }
 
     @BindingAdapter("imgFoodDetail")
@@ -29,22 +42,12 @@ public class FoodDetailVM extends BaseObservable {
 
     @Bindable
     public String getFoodImgUrl() {
-        return foodImgUrl;
-    }
-
-    public void setFoodImgUrl(String foodImgUrl) {
-        this.foodImgUrl = foodImgUrl;
-        notifyPropertyChanged(BR.foodImgUrl);
+        return foodModel.getThumbnail();
     }
 
     @Bindable
     public String getFoodName() {
-        return foodName;
-    }
-
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-        notifyPropertyChanged(BR.foodName);
+        return foodModel.getName();
     }
 
     @Bindable
@@ -59,15 +62,26 @@ public class FoodDetailVM extends BaseObservable {
 
     @Bindable
     public String getFoodDescription() {
-        return foodDescription;
-    }
-
-    public void setFoodDescription(String foodDescription) {
-        this.foodDescription = foodDescription;
-        notifyPropertyChanged(BR.foodDescription);
+        return this.foodModel.getDescription();
     }
 
     public void addBtnHandler(){
+        if (foodModel != null){
+            CartItem item = new CartItem(foodModel,foodQuantity);
+            Log.i("ID", item.getId());
+            Store.get_instance().addToCart(item);
+        }
+        if (callback!= null) {
+            String msg = this.foodModel.getName() + (foodQuantity > 1 ? "x" + getFoodQuantity() : "");
+            callback.setValue(msg);
+        }
+    }
 
+    public void increaseQuantity() {
+        setFoodQuantity(foodQuantity+1);
+    }
+
+    public void decreaseQuantity() {
+        setFoodQuantity(foodQuantity-1);
     }
 }
