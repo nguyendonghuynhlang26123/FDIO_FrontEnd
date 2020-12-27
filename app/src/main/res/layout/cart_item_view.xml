@@ -67,12 +67,6 @@
                 android:gravity="center"
                 android:text="@{vm.cartItemTotalPrice}"
                 />
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:text="X"
-                android:gravity="center"
-                android:textSize="36sp"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

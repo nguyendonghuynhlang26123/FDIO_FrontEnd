@@ -45,13 +45,13 @@ public class LoginActivity extends AppCompatActivity {
 
         UserModel user = new UserModel(username,password);
         UserService service = new UserService();
-        vm.setLoading(true);
+        vm.setLoginSpinner(true);
         service.login(user).enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if (response.body().getStatus().equals("successful")){
                     //TODO: SWITCH TO ADMIN MENU
-                    vm.setLoading(false);
+                    vm.setLoginSpinner(false);
                     Toast.makeText(LoginActivity.this, "LOGIN SUCCESSFULLY", Toast.LENGTH_SHORT).show();
                 }
                 else {

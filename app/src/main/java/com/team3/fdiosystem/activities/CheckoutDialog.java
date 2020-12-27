@@ -98,8 +98,8 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                     binding.checkoutProgressbar.setVisibility(View.GONE);
 
+                    Log.i("ORDER_", response.body().getStatus());
                     Store.get_instance().appendOrderedList(new ArrayList<>(Arrays.asList(order.getList_order_item())));
-
                     close();
                 }
 

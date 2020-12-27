@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <import type="android.view.View"/>
         <variable
             name="vm"
             type="com.team3.fdiosystem.viewmodels.MenuHompageVM" />
@@ -19,19 +20,7 @@
             android:layout_height="match_parent"
             android:id="@+id/Gridview"
             tools:ignore="MissingClass"
-
             android:divider="@null"
             android:dividerHeight="0dp"/>
-
-        <ProgressBar
-            android:id="@+id/pBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="@{vm.isLoading, default=gone}"
-            />
-
-
     </RelativeLayout>
 </layout>
