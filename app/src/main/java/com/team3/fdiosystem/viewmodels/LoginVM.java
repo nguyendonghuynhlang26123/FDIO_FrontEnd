@@ -9,14 +9,13 @@ public class LoginVM extends BaseObservable {
     private String username;
     private String password;
     private String notify;
-    private boolean isLoading;
-
+    private boolean loginSpinner;
 
     public LoginVM(){
         username="";
         password="";
         notify="";
-        setLoading(false);
+        setLoginSpinner(false);
     }
 
     @Bindable
@@ -29,15 +28,6 @@ public class LoginVM extends BaseObservable {
         notifyPropertyChanged(BR.username);
     }
 
-    @Bindable
-    public boolean isLoading() {
-        return isLoading;
-    }
-
-    public void setLoading(boolean loading) {
-        isLoading = loading;
-        notifyPropertyChanged(BR.isLoading);
-    }
 
     @Bindable
     public String getPassword() {
@@ -59,4 +49,13 @@ public class LoginVM extends BaseObservable {
         notifyPropertyChanged(BR.notify);
     }
 
+    @Bindable
+    public boolean isLoginSpinner() {
+        return loginSpinner;
+    }
+
+    public void setLoginSpinner(boolean loginSpinner) {
+        this.loginSpinner = loginSpinner;
+        notifyPropertyChanged(BR.loginSpinner);
+    }
 }

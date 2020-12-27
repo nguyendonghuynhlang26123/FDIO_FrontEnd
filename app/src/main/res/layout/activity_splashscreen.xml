@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_main_background"  >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:id="@+id/applogo"
+        >
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_fried"
+            app:tint="@color/yellow"
+            android:id="@+id/splash_img"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:id="@+id/logo_mid"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:fontFamily="@font/noto"
+                android:text="DINE-IN"
+                android:textColor="@color/white"
+                android:textSize="38sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="69dp"
+                android:fontFamily="@font/nortwest"
+                android:text="FOOD"
+                android:textColor="@color/teal_200"
+                android:textSize="76sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="★★★ Team3 ★★★"
+                android:textAlignment="center"
+                android:textColor="@color/gray_200"
+                android:gravity="center_horizontal"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/nortwest"
+            android:rotation="-90"
+            android:text="SYSTEM"
+            android:textColor="@color/red"
+            android:textSize="35sp"
+            android:layout_marginLeft="-5dp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:id="@+id/logo_right"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/applogo"
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Loading..."
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@android:style/Widget.ProgressBar.Small"/>
+    </LinearLayout>
+</RelativeLayout>

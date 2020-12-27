@@ -11,6 +11,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -48,23 +49,21 @@ public class MyFirebaseService extends FirebaseMessagingService {
         LocalStorage.saveData(DemoActivity.getContext(), Utils.TOKEN, s);
     }
 
-    public void debug() {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void getTokenFromCloud(Context ctx) {
         FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        final String TAG = "TOKEN";
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        String token = task.getResult();
-
-                        // Log and toast
-                        LocalStorage.saveData(DemoActivity.getContext(), Utils.TOKEN, token);
+                .addOnCompleteListener(task -> {
+                    final String TAG = "TOKEN";
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
                     }
+
+                    // Get new FCM registration token
+                    String token = task.getResult();
+
+                    // Log and toast
+                    LocalStorage.saveData(ctx, Utils.TOKEN, token);
                 });
     }
 
