@@ -65,7 +65,8 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:text="@{vm.foodQuantity}"
-                    android:gravity="center_horizontal" />
+                    android:gravity="center_horizontal"
+                    android:id="@+id/detail_quantity"/>
                 <Button
                     android:layout_width="46dp"
                     android:layout_height="36dp"
