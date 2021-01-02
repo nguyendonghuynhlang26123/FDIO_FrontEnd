@@ -44,7 +44,18 @@ public class Store {
 
     public void setMenu(ArrayList<FoodListModel> menu) {
         this.menu = menu;
-        Log.i("STORE_", new Gson().toJson(this.menu));
+    }
+
+    public void addAMenu(FoodListModel model){
+        this.menu.add(model);
+    }
+
+    public void removeAMenu(int position) {
+        try {
+            this.menu.remove(position);
+        } catch (Exception e) {
+            return;
+        }
     }
 
     public FoodListModel getMenuById(String id){

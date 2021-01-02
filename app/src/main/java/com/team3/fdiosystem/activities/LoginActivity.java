@@ -1,5 +1,6 @@
 package com.team3.fdiosystem.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -52,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body().getStatus().equals("successful")){
                     //TODO: SWITCH TO ADMIN MENU
                     vm.setLoginSpinner(false);
-                    Toast.makeText(LoginActivity.this, "LOGIN SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginActivity.this, ManagementHomepageActivity.class);
+                    LoginActivity.this.startActivity(i);
                 }
                 else {
                     vm.setNotify(response.body().getErr());

@@ -24,7 +24,8 @@
 
         <activity android:name=".activities.MenuContent" android:parentActivityName=".activities.MenuHomepage"/>
         <activity android:name=".activities.OrderedCheckActivity" android:parentActivityName=".activities.MenuHomepage"/>
-<!--        <activity android:name=".activities.ManagementHomepage" />-->
+        <activity android:name=".activities.ManagementHomepageActivity" />
+        <activity android:name=".activities.AdminMenuActivity" />
 <!--        <activity android:name=".activities.MenuItemModifyForm" />-->
 <!--        <activity android:name=".activities.MenuActivity" />-->
 <!--        <activity android:name=".activities.MainActivity" />-->

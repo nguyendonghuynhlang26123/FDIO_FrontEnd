@@ -69,8 +69,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                     Store.get_instance().setMenu(new ArrayList<>(Arrays.asList(data)));
                     MyFirebaseService.getTokenFromCloud(SplashScreenActivity.this );
 
-                    Intent h = new Intent(SplashScreenActivity.this, MenuHomepage.class);
-                    startActivity(h);
+                    //Intent h = new Intent(SplashScreenActivity.this, MenuHomepage.class);
+                    //startActivity(h);
+
+                    debug();
                     finish();
                 }
 
@@ -80,5 +82,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
             });
         },1000);
+    }
+
+    public void debug(){
+        Intent i = new Intent(this, AdminMenuActivity.class );
+        startActivity(i);
     }
 }

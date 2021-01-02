@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.team3.fdiosystem.R;
+import com.team3.fdiosystem.models.Store;
 import com.team3.fdiosystem.models.ui.UI_FoodListItem;
 
 import java.util.ArrayList;
@@ -36,12 +37,7 @@ public class FoodListAdapter extends ArrayAdapter {
         FloatingActionButton fab = listItemView.findViewById(R.id.fab);
         fab.setVisibility(View.INVISIBLE);
         listItemView.setLongClickable(true);
-        fab.setOnClickListener(v -> {
-            //Store.get_instance().removeMenu(current_item);
-            notifyDataSetChanged();
-        });
-//        TextView txt = listItemView.findViewById(R.id.menu_txt);
-//        txt.setText(current_item.getTxtsrc());
+
         return listItemView;
     }
 }
