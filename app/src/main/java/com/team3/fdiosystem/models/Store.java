@@ -14,19 +14,21 @@ import com.team3.fdiosystem.repositories.services.MyFirebaseService;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Store {
     //Variables
     private ArrayList<FoodListModel> menu;  //Store the whole menu here
     private Cart cart; //Store the temporary cart before ordering
-    private ArrayList<OrderItemModel> orderedList; //Show the list of ordered food to keep track there status
+    private HashMap<String, ArrayList<OrderItemModel>> orderedMap; //Show the list of ordered food to keep track there status
     private int mode; //Current Mode
+    private String tableId; //Current table of the device
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private Store(){
         menu = new ArrayList<>();
         cart = new Cart();
-        orderedList = new ArrayList<>();
+        orderedMap = new HashMap<>();
         mode = Utils.GUEST_MODE;
     }
 
@@ -46,8 +48,11 @@ public class Store {
     }
 
     //Functions
-    
-    
+
+    public HashMap<String, ArrayList<OrderItemModel>> getOrderedMap() {
+        return orderedMap;
+    }
+
     //Getter Setter
     public ArrayList<FoodListModel> getMenu() {
         return menu;
@@ -141,18 +146,37 @@ public class Store {
     }
 
     public ArrayList<OrderItemModel> getOrderedList() {
+        ArrayList<OrderItemModel> orderedList = new ArrayList<>();
+        for (ArrayList<OrderItemModel> list : orderedMap.values()){
+            orderedList.addAll(list);
+        }
         return orderedList;
     }
 
-    public void setOrderedList(ArrayList<OrderItemModel> orderedList) {
-        this.orderedList = orderedList;
+    public void appendOrderedList(String orderId, ArrayList<OrderItemModel> orderedList) {
+        this.orderedMap.put(orderId, orderedList);
     }
 
-    public void appendOrderedList(ArrayList<OrderItemModel> orderedList) {
-        this.orderedList.addAll(orderedList);
+    public boolean setStatus(String foodId, String orderId, String status){
+        if (orderedMap.containsKey(orderId))
+            for (OrderItemModel food : orderedMap.get(orderId)){
+                if (foodId.equalsIgnoreCase(food.getId())){
+                    food.setStatus(status);
+                    return true;
+                }
+            }
+        return false;
     }
 
     public void setMode(int mode) {
         this.mode = mode;
+    }
+
+    public String getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(String tableId) {
+        this.tableId = tableId;
     }
 }

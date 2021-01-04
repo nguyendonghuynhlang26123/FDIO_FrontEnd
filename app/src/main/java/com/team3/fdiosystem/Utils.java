@@ -17,6 +17,7 @@ public class Utils {
     public static final String BACK_END_API_PATH = "https://nmcnpm-team3.herokuapp.com/";
 
     public static final String TOKEN = "FIRESTORE_TOKEN";
+    public static final String TABLE_ID = "TABLE_ID";
 
     public static final int UI_FOODLIST_TYPE_S = 0;
     public static final int UI_FOODLIST_TYPE_M = 1;
@@ -25,4 +26,11 @@ public class Utils {
 
     public static final int ADMIN_MODE = 0;
     public static final int GUEST_MODE = 1;
+
+    public static final String BROADCAST_ORDERCHECK = "ORDER_CHECK";
+
+    public static final String STATUS_WAITING = "WAITING";
+    public static final String STATUS_PROCESSING = "PROCESSING";
+    public static final String STATUS_DONE = "DONE";
+    public static final String STATUS_DENIED = "DENIED";
 }
