@@ -24,6 +24,7 @@ import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.models.ResponseModel;
 import com.team3.fdiosystem.models.Store;
 import com.team3.fdiosystem.repositories.services.FoodListService;
+import com.team3.fdiosystem.viewmodels.Event;
 import com.team3.fdiosystem.viewmodels.MenuHompageVM;
 
 import retrofit2.Call;
@@ -34,6 +35,7 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
     MenuHompageVM vm;
     AsymmetricGridViewAdapter menuAdapter;
     AsymmetricGridView menuView;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,6 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
         findViewById(R.id.add_fab).setOnClickListener(v -> {
             FragmentManager fragmentManager = getSupportFragmentManager();
             DialogFragment dialog = new MenuModifyDialog();
-
             dialog.show(fragmentManager,"MenuModifier");
         });
 
@@ -76,7 +77,11 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
             btn.setVisibility(View.VISIBLE);
             if (!btn.hasOnClickListeners()){
                 btn.setOnClickListener(t -> {
-                    removeAnFoodList(position);
+                    Event callBackEv = () -> {
+                        removeAnFoodList(position);
+                    };
+                    DialogFragment dialog = new ConfirmDialog("Delete this food list?", callBackEv);
+                    dialog.show(getSupportFragmentManager(),"Confirm");
                 });
             };
             return true;
@@ -120,4 +125,5 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
         refreshRendering();
 
     }
+
 }

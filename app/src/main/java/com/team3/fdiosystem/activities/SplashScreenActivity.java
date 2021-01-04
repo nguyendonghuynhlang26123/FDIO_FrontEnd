@@ -69,10 +69,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                     Store.get_instance().setMenu(new ArrayList<>(Arrays.asList(data)));
                     MyFirebaseService.getTokenFromCloud(SplashScreenActivity.this );
 
-                    //Intent h = new Intent(SplashScreenActivity.this, MenuHomepage.class);
-                    //startActivity(h);
+                    Intent h = new Intent(SplashScreenActivity.this, MenuHomepage.class);
+                    startActivity(h);
 
-                    debug();
+                    //debug();
                     finish();
                 }
 

@@ -251,7 +251,7 @@ public class DemoVM extends BaseObservable {
 
     private void foodDeleteRequest(String id) {
         FoodService fService = new FoodService();
-        fService.deleteFoodById(id).enqueue(new Callback<ResponseModel>() {
+        fService.deleteFoodById(id, "").enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(!response.isSuccessful()){

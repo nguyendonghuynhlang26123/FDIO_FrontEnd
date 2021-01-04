@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.gson.Gson;
 import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.activities.FoodDialog;
@@ -100,6 +101,25 @@ public class Store {
         newIdList[oldIdList.length] = newFood.getId();
         System.arraycopy(oldIdList,0,newIdList,0,oldIdList.length);
         targetedFoodList.setFoodIdList(newIdList);
+    }
+
+    public void removeAFoodInFoodList(String foodId, String menuId){
+        FoodListModel menu = this.getMenuById(menuId);
+        if (menu.getFoodIdList().length == 0) return;
+
+        String[] newIds = new String[menu.getFoodIdList().length - 1];
+        FoodModel[] newModels = new FoodModel[menu.getFoodIdList().length - 1];
+        int count = 0;
+
+        for (int i = 0; i < menu.getFoodList().length; i++){
+            if (!menu.getFoodIdList()[i].equalsIgnoreCase(foodId)){
+                newModels[count] = menu.getFoodList()[i];
+                newIds[count] = menu.getFoodIdList()[i];
+                count++;
+            }
+        }
+        menu.setFoodIdList(newIds);
+        menu.setFoodList(newModels);
     }
 
     public Cart getCart() {

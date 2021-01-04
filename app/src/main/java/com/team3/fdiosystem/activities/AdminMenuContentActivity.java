@@ -19,13 +19,19 @@ import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.databinding.ActivityAdminMenuContentBinding;
 import com.team3.fdiosystem.models.FoodListModel;
 import com.team3.fdiosystem.models.FoodModel;
+import com.team3.fdiosystem.models.ResponseModel;
 import com.team3.fdiosystem.models.Store;
+import com.team3.fdiosystem.repositories.services.FoodService;
 import com.team3.fdiosystem.viewmodels.FoodItemVM;
 import com.team3.fdiosystem.viewmodels.adapters.AdminFoodItemAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdminMenuContentActivity extends AppCompatActivity implements FoodDialog.FoodDialogListener {
     ActivityAdminMenuContentBinding binding;
@@ -66,8 +72,9 @@ public class AdminMenuContentActivity extends AppCompatActivity implements FoodD
             for (FoodModel foodModel : foodModels) {
                 FoodItemVM vm = new FoodItemVM(foodModel);
                 vm.getActionBtnCallback().observe(this, id1 -> {
-                    Snackbar.make(binding.menuContentAdmin, foodModel.getName() + " is deleted!",
-                            Snackbar.LENGTH_LONG).show();
+                    DialogFragment confirm = new ConfirmDialog("Delete " + foodModel.getName(),
+                            ()->deleteAFood(foodModel));
+                    confirm.show(getSupportFragmentManager(), "Confirm");
                 });
                 vms.add(vm);
             }
@@ -83,4 +90,28 @@ public class AdminMenuContentActivity extends AppCompatActivity implements FoodD
         adapter.setItems(loadDataFromStore());
     }
 
+    public void deleteAFood(FoodModel foodModel){
+        FoodService foodService = new FoodService();
+        foodService.deleteFoodById(foodModel.getId(),foodListId).enqueue(new Callback<ResponseModel>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if (response.body().getStatus().equals("successful")){
+                    Snackbar.make(binding.getRoot(), foodModel.getName() + " is deleted!",
+                            Snackbar.LENGTH_LONG).show();
+
+                    Store.get_instance().removeAFoodInFoodList(foodModel.getId(), foodListId);
+                    //Refresh
+                    adapter.setItems(loadDataFromStore());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                Snackbar.make(binding.getRoot(), "Deleting failed! Please try again!",
+                        Snackbar.LENGTH_LONG).show();
+            }
+        });
+    }
 }
