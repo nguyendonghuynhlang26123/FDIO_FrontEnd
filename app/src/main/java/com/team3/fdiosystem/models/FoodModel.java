@@ -75,5 +75,15 @@ public class FoodModel {
         this.description = description;
         this.type = type;
         this.price = price;
+        this.id = "";
+    }
+
+    public boolean isEqual(FoodModel another){
+        return another.getId().equals(this.id)
+                && another.getName().equals(this.name)
+                && another.getType().equals(this.type)
+                && another.getDescription().equals(this.description)
+                && another.getPrice().equals(this.price)
+                && another.getThumbnail().equals(this.thumbnail);
     }
 }

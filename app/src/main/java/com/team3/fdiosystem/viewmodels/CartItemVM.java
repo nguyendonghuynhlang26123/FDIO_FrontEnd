@@ -28,7 +28,7 @@ public class CartItemVM extends BaseObservable {
     public CartItemVM(CartItem item) {
         this.id = item.getId();
         this.requestRefresh = null;
-        FoodModel food = Store.get_instance().getModelById(id);
+        FoodModel food = Store.get_instance().getFoodModelById(id);
 
         setCartItemName(food.getName());
         setCartItemImgUrl(food.getThumbnail());

@@ -29,6 +29,7 @@ public class FoodListModel {
         this.id="";
         this.name = name;
         this.foodIdList = new String[]{};
+        this.foodList = new FoodModel[]{};
         this.thumbnail = thumbnail;
     }
 

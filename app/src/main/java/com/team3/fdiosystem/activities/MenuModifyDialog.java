@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 
@@ -121,6 +123,7 @@ public class MenuModifyDialog extends DialogFragment {
 
         FoodListService foodListService = new FoodListService();
         foodListService.createFoodList(model).enqueue(new Callback<ResponseModel>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if (response.body().getStatus().equals("successful")){
@@ -132,7 +135,8 @@ public class MenuModifyDialog extends DialogFragment {
                 else
                     Snackbar.make(v, "Create foodlist failed! Please try again another time", Snackbar.LENGTH_LONG ).show();
 
-                if (listener != null) listener.onFinished();
+                if (listener != null)
+                    listener.onFinished();
                 dismiss();
             }
 

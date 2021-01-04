@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -27,7 +26,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
 
-        FoodModel model = Store.get_instance().getModelById(id);
+        FoodModel model = Store.get_instance().getFoodModelById(id);
         Log.i("FOOD_DETAIL", new Gson().toJson(model));
 
         FoodDetailVM vm = new FoodDetailVM(model);

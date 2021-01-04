@@ -3,36 +3,25 @@ package com.team3.fdiosystem.activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.databinding.ActivityMenuContentBinding;
+import com.team3.fdiosystem.models.CartItem;
 import com.team3.fdiosystem.models.FoodListModel;
 import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.Store;
-import com.team3.fdiosystem.repositories.services.FoodListService;
-import com.team3.fdiosystem.viewmodels.Event;
 import com.team3.fdiosystem.viewmodels.FoodItemVM;
 import com.team3.fdiosystem.viewmodels.adapters.FoodItemAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MenuContent extends AppCompatActivity {
     ActivityMenuContentBinding binding;
@@ -54,14 +43,14 @@ public class MenuContent extends AppCompatActivity {
             FoodModel[] foodModels =  flist.getFoodList();
 
             for (FoodModel foodModel : foodModels) {
-                FoodItemVM vm = new FoodItemVM(foodModel.getId(), foodModel.getPrice(),
-                        foodModel.getName(), foodModel.getThumbnail());
-                vm.getAddBtnCallBack().observe(this, new Observer<String>() {
-                    @Override
-                    public void onChanged(String s) {
-                        Snackbar.make(binding.menuContentMain, s + " is added to cart!",
-                                Snackbar.LENGTH_LONG).show();
+                FoodItemVM vm = new FoodItemVM(foodModel);
+                vm.getActionBtnCallback().observe(this, foodId -> {
+                    if (foodModel != null){
+                        CartItem item = new CartItem(foodModel,1);
+                        Store.get_instance().addToCart(item);
                     }
+                    Snackbar.make(binding.menuContentMain, foodModel.getName() + " is added to cart!",
+                            Snackbar.LENGTH_LONG).show();
                 });
                 vms.add(vm);
             }

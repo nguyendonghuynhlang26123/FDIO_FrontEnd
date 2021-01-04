@@ -27,7 +27,7 @@ public class OrderCheckItemVM extends BaseObservable {
         orderCheckQuantity=0;
 
 
-        FoodModel food = Store.get_instance().getModelById(model.getId());
+        FoodModel food = Store.get_instance().getFoodModelById(model.getId());
         if (food != null){
             this.id = model.getId();
             setOrderCheckName(food.getName());

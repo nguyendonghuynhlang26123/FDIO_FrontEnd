@@ -1,6 +1,7 @@
 package com.team3.fdiosystem.repositories.api;
 
 import com.team3.fdiosystem.models.FoodListModel;
+import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.ResponseModel;
 
 import retrofit2.Call;

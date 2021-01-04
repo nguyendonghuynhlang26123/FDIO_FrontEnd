@@ -85,7 +85,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     public void debug(){
-        Intent i = new Intent(this, AdminMenuActivity.class );
+        Intent i = new Intent(this, ManagementHomepageActivity.class );
         startActivity(i);
     }
 }

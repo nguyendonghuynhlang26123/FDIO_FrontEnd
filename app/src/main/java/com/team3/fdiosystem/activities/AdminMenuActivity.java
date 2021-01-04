@@ -1,6 +1,7 @@
 package com.team3.fdiosystem.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -60,9 +62,9 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
                 view.findViewById(R.id.fab).setVisibility(View.INVISIBLE);
             }
             else{
-//                Intent i = new Intent(AdminMenuActivity.this,MenuActivity.class);
-//                i.putExtra("type", position);
-//                startActivity(i);
+                Intent i = new Intent(AdminMenuActivity.this,AdminMenuContentActivity.class);
+                i.putExtra("id", vm.getFoodListId(position));
+                startActivity(i);
             }
         });
 
@@ -88,6 +90,7 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
         menuView.setAdapter(menuAdapter);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void removeAnFoodList(int position){
         String id = Store.get_instance().getMenu().get(position).getId();
 

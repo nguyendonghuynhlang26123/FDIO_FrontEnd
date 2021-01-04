@@ -66,7 +66,7 @@ public class MenuModifyDialogVM extends BaseObservable {
 
     @BindingAdapter("addFoodListDialogImg")
     public static void loadImage(ImageView view, String url) {
-        if (url != "") Picasso.get().load(url).into(view);
+        if (!url.equals("")) Picasso.get().load(url).into(view);
     }
 
     public void onUITypeSelect( int type){
