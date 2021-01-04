@@ -158,4 +158,10 @@ public class MenuModifyDialog extends DialogFragment {
             binding.getVm().setFoodListDialogImage(imgURI.toString());
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

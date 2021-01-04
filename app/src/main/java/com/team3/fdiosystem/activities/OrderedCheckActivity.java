@@ -6,10 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.team3.fdiosystem.R;
+import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.databinding.ActivityOrderCheckBinding;
 import com.team3.fdiosystem.models.OrderItemModel;
 import com.team3.fdiosystem.models.Store;
@@ -43,4 +49,31 @@ public class OrderedCheckActivity extends AppCompatActivity {
         }
         adapter.setVms(vms);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Utils.BROADCAST_ORDERCHECK);
+        this.registerReceiver(mReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.unregisterReceiver(mReceiver);
+    }
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Utils.BROADCAST_ORDERCHECK)) {
+                loadDataFromStore();
+            }
+        }
+
+    };
 }

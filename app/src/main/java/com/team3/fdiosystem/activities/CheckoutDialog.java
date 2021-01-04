@@ -98,8 +98,7 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                     binding.checkoutProgressbar.setVisibility(View.GONE);
 
-                    Log.i("ORDER_", response.body().getStatus());
-                    Store.get_instance().appendOrderedList(new ArrayList<>(Arrays.asList(order.getList_order_item())));
+                    Store.get_instance().appendOrderedList(response.body().getId(), new ArrayList<>(Arrays.asList(order.getList_order_item())));
                     close();
                 }
 
@@ -141,6 +140,7 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
         });
     }
     
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private OrderModel getOrderFromCart() {
         OrderItemModel[] arr = new OrderItemModel[this.cart.getItems().size()];
         for (int i = 0; i < this.cart.getItems().size(); i++) {
@@ -149,7 +149,7 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
         }
 
         return new OrderModel("None", "None",
-                this.cart.getNote(), "10", this.token, arr);
+                this.cart.getNote(), Store.get_instance().getTableId(), this.token, arr);
     }
     
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -161,4 +161,9 @@ public class CheckoutDialog extends BottomSheetDialogFragment {
         this.callback = callback;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

@@ -23,24 +23,37 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.activities.DemoActivity;
+import com.team3.fdiosystem.activities.OrderedCheckActivity;
+import com.team3.fdiosystem.models.Store;
+import com.team3.fdiosystem.viewmodels.OrderCheckItemVM;
 
 import java.util.Map;
 
 public class MyFirebaseService extends FirebaseMessagingService {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        if (remoteMessage.getData().isEmpty()){
-            showNotification(remoteMessage.getNotification().getTitle(),
-                    remoteMessage.getNotification().getBody());
-        } else{
+        if (!remoteMessage.getData().isEmpty()){
             Map<String, String> data = remoteMessage.getData();
             String title = data.get("title");
             String body = data.get("body");
-
-            showNotification(title,body);
+            String orderId = data.get("orderId");
+            String foodId = data.get("foodId");
+            String status = data.get("status");
+            if (Store.get_instance().setStatus(foodId,orderId, status)) {
+                showNotification(title, body);
+                sendBroadCastEvent();
+            }
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void sendBroadCastEvent(){
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(Utils.BROADCAST_ORDERCHECK);
+        sendBroadcast(broadcastIntent);
     }
 
     @Override
@@ -97,10 +110,5 @@ public class MyFirebaseService extends FirebaseMessagingService {
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(body));
 
         notiManager.notify(0, notiBuilder.build());
-        Intent intent = new Intent("myFunction");
-        // add data
-        intent.putExtra("value1", title);
-        intent.putExtra("value2", body);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 }

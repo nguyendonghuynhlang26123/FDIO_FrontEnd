@@ -200,4 +200,9 @@ public class FoodDialog extends DialogFragment {
         });
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

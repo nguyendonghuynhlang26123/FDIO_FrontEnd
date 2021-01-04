@@ -53,14 +53,12 @@
                     android:textSize="20sp"
                     android:layout_marginTop="20dp"/>
 
-                <RadioButton
+                <TextView
                     android:id="@+id/ordered_item_stat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:checked="true"
-                    android:text="@{vm.orderCheckStatus}"
-                    android:textColor="@color/teal_200"
+                    StatusColor="@{vm.orderCheckStatus}"
                     android:textSize="20sp" />
 
             </LinearLayout>

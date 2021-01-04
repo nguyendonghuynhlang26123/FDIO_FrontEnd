@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import com.team3.fdiosystem.R;
 import com.team3.fdiosystem.models.ResponseModel;
 import com.team3.fdiosystem.models.Store;
 import com.team3.fdiosystem.repositories.services.FoodListService;
+import com.team3.fdiosystem.repositories.services.LocalStorage;
 import com.team3.fdiosystem.viewmodels.Event;
 import com.team3.fdiosystem.viewmodels.MenuHompageVM;
 
@@ -99,7 +102,6 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
     public void removeAnFoodList(int position){
         String id = Store.get_instance().getMenu().get(position).getId();
 
-
         //TODO: SEND RETROFIT
         FoodListService service = new FoodListService();
         service.deleteFoodListById(id).enqueue(new Callback<ResponseModel>() {
@@ -123,7 +125,34 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
     @Override
     public void onFinished() {
         refreshRendering();
+    }
 
+    //Menu item clicked
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.admin_navbar, menu);
+        return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.admin_setting:
+                String tableId = LocalStorage.getData(this, com.team3.fdiosystem.Utils.TABLE_ID);
+                DialogFragment dialog = new TableIdDialog(tableId, () -> {
+                    Toast.makeText(this, "Update table id successfully", Toast.LENGTH_SHORT).show();
+                });
+                dialog.show(getSupportFragmentManager(),"TABLEID");
+                return true;
+            case R.id.admin_logout:
+                Intent l = new Intent(this, LoginActivity.class);
+                this.startActivity(l);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
