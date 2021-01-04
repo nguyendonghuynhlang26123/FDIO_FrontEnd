@@ -1,6 +1,7 @@
 package com.team3.fdiosystem.repositories.services;
 
 import com.team3.fdiosystem.models.FoodListModel;
+import com.team3.fdiosystem.models.FoodModel;
 import com.team3.fdiosystem.models.ResponseModel;
 import com.team3.fdiosystem.repositories.api.FoodListApi;
 
@@ -21,12 +22,12 @@ public class FoodListService {
     //Create Food List
     public Call<ResponseModel> createFoodList(FoodListModel foodList) { return api.post(foodList);}
 
-    //Update Food
+    //Update Food list
     public Call<ResponseModel> updateFoodList(String id, FoodListModel foodList) { return api.put(id ,foodList);}
 
-    //Delete Food
+    //Delete Food list
     public Call<ResponseModel> deleteFoodListById(String id){return api.delete(id);}
 
-    //Delete list of foods
+    //Delete Food list
     public Call<ResponseModel> deleteFoodListByIdList(String[] ids){return api.delete(ids);}
 }

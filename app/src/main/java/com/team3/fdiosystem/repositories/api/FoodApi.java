@@ -25,12 +25,16 @@ public interface FoodApi {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     Call<ResponseModel> post(@Body FoodModel model);
 
+    @POST("/food/append/{id}")
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    Call<ResponseModel> postAppend(@Path("id")String foodListId, @Body FoodModel model);
+
     @PUT("/food/{id}")
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     Call<ResponseModel> put(@Path("id")String id, @Body FoodModel model);
 
     @DELETE("/food/{id}")
-    Call<ResponseModel> delete(@Path("id")String id);
+    Call<ResponseModel> delete(@Path("id")String id, @Query("foodListId") String foodListId);
 
     @DELETE("/food")
     Call<ResponseModel> delete(@Query("ids")String[] ids);

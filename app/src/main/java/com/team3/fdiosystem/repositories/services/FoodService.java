@@ -22,11 +22,14 @@ public class FoodService {
     //Create Food
     public Call<ResponseModel> createFood(FoodModel order) { return api.post(order);}
 
+    //Create Food & append to Food List
+    public Call<ResponseModel> appendFood(String foodListId, FoodModel order) { return api.postAppend(foodListId, order);}
+
     //Update Food
     public Call<ResponseModel> updateFood(String id, FoodModel order) { return api.put(id ,order);}
 
     //Delete Food
-    public Call<ResponseModel> deleteFoodById(String id){return api.delete(id);}
+    public Call<ResponseModel> deleteFoodById(String id, String foodListParent){ return api.delete(id,foodListParent);}
 
     //Delete list of foods
     public Call<ResponseModel> deleteFoodByIdList(String[] ids){return api.delete(ids);}

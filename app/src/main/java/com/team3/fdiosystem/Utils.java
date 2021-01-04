@@ -23,5 +23,6 @@ public class Utils {
     public static final int UI_FOODLIST_TYPE_L = 2;
     public static final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("vi-VN"));
 
-
+    public static final int ADMIN_MODE = 0;
+    public static final int GUEST_MODE = 1;
 }

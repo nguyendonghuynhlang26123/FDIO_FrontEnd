@@ -1,17 +1,22 @@
 package com.team3.fdiosystem.activities;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.team3.fdiosystem.R;
+import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.databinding.ActivityLoginBinding;
 import com.team3.fdiosystem.models.ResponseModel;
+import com.team3.fdiosystem.models.Store;
 import com.team3.fdiosystem.models.UserModel;
 import com.team3.fdiosystem.repositories.services.UserService;
 import com.team3.fdiosystem.viewmodels.LoginVM;
@@ -47,12 +52,14 @@ public class LoginActivity extends AppCompatActivity {
         UserService service = new UserService();
         vm.setLoginSpinner(true);
         service.login(user).enqueue(new Callback<ResponseModel>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if (response.body().getStatus().equals("successful")){
-                    //TODO: SWITCH TO ADMIN MENU
                     vm.setLoginSpinner(false);
-                    Toast.makeText(LoginActivity.this, "LOGIN SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+                    Store.get_instance().setMode(Utils.ADMIN_MODE);
+                    Intent i = new Intent(LoginActivity.this, ManagementHomepageActivity.class);
+                    LoginActivity.this.startActivity(i);
                 }
                 else {
                     vm.setNotify(response.body().getErr());

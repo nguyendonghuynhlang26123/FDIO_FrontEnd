@@ -71,6 +71,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     Intent h = new Intent(SplashScreenActivity.this, MenuHomepage.class);
                     startActivity(h);
+
+                    //debug();
                     finish();
                 }
 
@@ -80,5 +82,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
             });
         },1000);
+    }
+
+    public void debug(){
+        Intent i = new Intent(this, ManagementHomepageActivity.class );
+        startActivity(i);
     }
 }
