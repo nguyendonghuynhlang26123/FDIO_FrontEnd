@@ -18,6 +18,7 @@
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
                 android:id="@+id/cart_item_img"
                 imgCartItem="@{vm.cartItemImgUrl}"/>
             <TextView

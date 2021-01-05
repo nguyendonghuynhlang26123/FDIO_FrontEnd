@@ -10,4 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray_200">#CCf6f4e6</color>
     <color name="red">#F54B42</color>
+    <color name="shrine">#388E3C</color>
+    <color name="onshrine">#442C2E</color>
 </resources>

@@ -37,115 +37,130 @@
                 android:paddingVertical="10dp"
                 android:paddingHorizontal="20dp"
                 >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thumbnail:"/>
-                <ImageView
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="200dp"
-                    foodDialogImgUrl="@{vm.foodDialogImg}"
-                    android:contentDescription="Image"
-                    android:src="@drawable/photo"
-                    android:onClick="@{() -> vm.handleImageClick()}"
-                    />
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_weight="1"
+                    android:paddingRight="5dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    >
-                    <TextView
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:text="Name:"
-                        />
-                    <EditText
+                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@={vm.foodDialogName}"
-                        android:background="@drawable/textview_border"
+                        android:minHeight="200dp"
+                        foodDialogImgUrl="@{vm.foodDialogImg}"
+                        android:contentDescription="Image"
+                        android:src="@drawable/photo"
+                        android:onClick="@{() -> vm.handleImageClick()}"
                         />
-                </LinearLayout>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
                     >
-                    <TextView
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:text="Type:"
-                        />
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@={vm.foodDialogType}"
-                        android:background="@drawable/textview_border"
-                        />
+                        android:hint="Name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_weight="1"
+                        android:paddingRight="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nameTextField"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={vm.foodDialogName}"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Type"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/typeTextField"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={vm.foodDialogType}"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/descriptionTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    >
-                    <TextView
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:text="Description:"
-                        />
-                    <EditText
+                    android:layout_marginTop="5dp"
+                    android:hint="Description"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textArea_information"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="top|left"
+                        android:text="@={vm.foodDialogDescription}"
                         android:inputType="textMultiLine"
                         android:overScrollMode="always"
                         android:scrollbarStyle="insideInset"
                         android:scrollbars="vertical"
-                        android:lines="6"
-                        android:background="@drawable/textview_border"
+                        android:lines="4"
+                        android:gravity="top|left"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:scrollHorizontally="false"
-                        android:layout_marginLeft="5dp"
-                        android:text="@={vm.foodDialogDescription}"
-                        />
-                </LinearLayout>
+                        android:scrollHorizontally="false"/>
 
-                <LinearLayout
+                </com.google.android.material.textfield.TextInputLayout>
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_gravity="end"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Price:"
-                        />
-                    <EditText
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:layout_marginLeft="5dp"
-                        android:text="@={vm.foodDialogPrice}"
-                        android:layout_marginRight="10dp"
-                        />
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        >
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:hint="Price"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_weight="1">
 
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:inputType="number"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={vm.foodDialogPrice}"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:id="@+id/modifySubmitBtn"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:text="CONFIRM"
-                        android:layout_gravity="end"
+                        android:textSize="24sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
                         />
-                </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
 

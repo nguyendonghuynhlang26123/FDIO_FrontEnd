@@ -1,9 +1,11 @@
 package com.team3.fdiosystem.models.ui;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.felipecsl.asymmetricgridview.library.model.AsymmetricItem;
 import com.team3.fdiosystem.models.FoodListModel;
@@ -15,6 +17,7 @@ public class UI_FoodListItem implements AsymmetricItem {
     private int position;
     private FoodListModel fModel;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public UI_FoodListItem(int position, FoodListModel model){
         this.fModel = model;
         this.position = position;

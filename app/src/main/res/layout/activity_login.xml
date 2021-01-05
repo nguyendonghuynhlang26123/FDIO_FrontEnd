@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#455357"
+        android:background="#F1F8E9"
         tools:context=".MainActivity"
         android:id="@+id/login_main">
 
@@ -24,7 +24,6 @@
             android:layout_weight="1"
             android:paddingTop="10dp"
             android:text="LOGIN"
-            android:textColor="#7B8D93"
             android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,24 +57,20 @@
                 android:orientation="horizontal">
 
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="User name:"
-                    android:textColor="#7B8D93"
-                    android:textSize="16sp"></TextView>
-
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:background="#ffff"
-                    android:text="@={vm.username}"
-                    android:textColorHint="#fff"
-                    android:textSize="16sp" />
+                    android:hint="@string/name_hint"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_gravity="center_horizontal">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.username}"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -86,26 +81,21 @@
                 android:layout_marginRight="30dp"
                 android:orientation="horizontal">
 
-
-                <TextView
-                    android:layout_width="103dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="Password:"
-                    android:textColor="#7B8D93"
-                    android:textSize="16sp"></TextView>
-
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:background="#ffff"
-                    android:inputType="textPassword"
-                    android:text="@={vm.password}"
-                    android:textColorHint="#fff"
-                    android:textSize="16sp" />
+                    android:hint="@string/pwd_hint"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_gravity="center_horizontal">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.password}"
+                        android:textSize="16sp"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -117,10 +107,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:layout_weight="1"
-                android:background="#C2C2C4"
                 android:text="Enter"
                 android:textAllCaps="false"
-                android:textColor="#7B8D93"
                 android:textSize="16sp"
                 android:visibility="visible"></Button>
 

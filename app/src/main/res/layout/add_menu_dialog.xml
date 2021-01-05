@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="com.team3.fdiosystem.R" />
         <variable
@@ -8,7 +9,8 @@
     </data>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,34 +53,36 @@
                     android:text="Type UI:"
                     android:layout_gravity="center"
                     />
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RadioGroup
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/radioGroup"
                     android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal">
-                    <Button
-                        android:layout_width="50dp"
+                    android:gravity="center"
+                    android:checkedButton="@id/radio_button_1"
+                    app:buttonTint="@color/shrine">
+                    <RadioButton
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
                         android:onClick="@{() -> vm.setUiType(0)}"
-                        android:backgroundTint="@{(Integer.parseInt(vm.uiType) == 0) ? R.color.purple_200: R.color.purple_700}"
-                        />
-                    <Button
-                        android:layout_width="50dp"
+                        android:text="S"
+                        android:layout_marginRight="16dp"
+                        android:id="@+id/radio_button_1"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2"
                         android:onClick="@{() -> vm.setUiType(1)}"
-                        android:layout_marginHorizontal="5dp"
-                        android:backgroundTint="@{(Integer.parseInt(vm.uiType) == 1) ? R.color.purple_200: R.color.purple_700}"
-                        />
-                    <Button
-                        android:layout_width="50dp"
+                        android:text="M"
+                        android:layout_marginRight="16dp"
+                        android:id="@+id/radio_button_2"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="@{() -> vm.setUiType(2)}"
-                        android:text="3"
-                        android:backgroundTint="@{(Integer.parseInt(vm.uiType) == 2) ? R.color.purple_200: R.color.purple_700}"
-                        />
-                </LinearLayout>
+                        android:text="L"
+                        android:layout_marginRight="16dp"
+                        android:id="@+id/radio_button_3"/>
+                </RadioGroup>
 
                 <LinearLayout
                     android:layout_width="match_parent"

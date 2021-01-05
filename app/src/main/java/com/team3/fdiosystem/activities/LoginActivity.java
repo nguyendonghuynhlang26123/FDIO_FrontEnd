@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginActivity.this.startActivity(i);
                 }
                 else {
+                    vm.setLoginSpinner(false);
                     vm.setNotify(response.body().getErr());
                     Snackbar.make(findViewById(R.id.login_main), "Login failed"
                             ,Snackbar.LENGTH_LONG).show();

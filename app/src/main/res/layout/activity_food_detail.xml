@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
         <variable
@@ -52,13 +53,16 @@
 
                 <Button
                     android:layout_width="46dp"
-                    android:layout_height="36dp"
+                    android:layout_height="46dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="5dp"
                     android:text="-"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/onshrine"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:onClick="@{()->vm.decreaseQuantity()}"
-                    android:visibility="@{(vm.foodQuantity.equals('1')) ? View.GONE : View.VISIBLE}"
-                    />
+                    android:visibility="@{(Integer.parseInt(vm.foodQuantity)==1) ? View.INVISIBLE : View.VISIBLE}" />
 
                 <TextView
                     android:layout_width="30dp"
@@ -69,8 +73,12 @@
                     android:id="@+id/detail_quantity"/>
                 <Button
                     android:layout_width="46dp"
-                    android:layout_height="36dp"
+                    android:layout_height="46dp"
                     android:text="+"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/onshrine"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_marginLeft="5dp"
                     android:onClick="@{()->vm.increaseQuantity()}"
                     />
@@ -85,13 +93,14 @@
                 />
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/detail"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             card_view:cardCornerRadius="16dp"
-            card_view:cardElevation="16dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@drawable/stroke_color"
             card_view:cardUseCompatPadding="true"
             android:layout_weight="2">
             <TextView
@@ -100,8 +109,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@{vm.foodDescription}"
+                android:id="@+id/detail_description"
                 />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
     
 </layout>
