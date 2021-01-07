@@ -10,7 +10,7 @@
         android:title="@string/app_name"
         app:showAsAction="always"/>
     <item android:id="@+id/ordered_check"
-        android:icon="@drawable/ic_ordered_icon"
+        android:icon="@drawable/ic_action_history"
         app:showAsAction="always"
         android:title="@string/app_name"/>
 </menu>
