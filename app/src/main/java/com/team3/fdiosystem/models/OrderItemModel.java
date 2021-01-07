@@ -12,7 +12,7 @@ public class OrderItemModel {
     private Integer quantity;
     @SerializedName("status")
     @Expose
-    private String status = "waiting";
+    private String status = "WAITING";
 
     public OrderItemModel(String id, Integer quantity ) {
         this.id = id;

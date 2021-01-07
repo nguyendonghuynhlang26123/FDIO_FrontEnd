@@ -87,20 +87,16 @@ public class OrderCheckItemVM extends BaseObservable {
     public static void setColor(TextView view, String status){
         switch (status){
             case Utils.STATUS_WAITING:
-                view.setTextColor(Color.parseColor("#FF03DAC5"));
                 view.setText("Waiting");
                 break;
             case Utils.STATUS_PROCESSING:
-                view.setTextColor(Color.parseColor("#FF03DAC5"));
                 view.setText("Processing");
                 break;
             case Utils.STATUS_DONE:
                 view.setText("Done");
-                view.setTextColor(Color.parseColor("#ffd66b"));
                 break;
             case Utils.STATUS_DENIED:
                 view.setText("Denied");
-                view.setTextColor(Color.parseColor("#F54B42"));
                 break;
             default:
                 break;

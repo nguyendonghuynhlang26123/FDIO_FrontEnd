@@ -43,10 +43,16 @@ public class CartActivity extends AppCompatActivity {
 
 
         loadDataFromStore();
+
         binding.ckoutBtn.setOnClickListener(ev->{
             DialogFragment dialog = new CheckoutDialog(CartActivity.this,
                     total_price, onDialogDimissed());
             dialog.show(getSupportFragmentManager(),dialog.getTag());
+        });
+
+        binding.clearFab.setOnClickListener(ev ->{
+            Store.get_instance().resetCart();
+            loadDataFromStore();
         });
     }
 
