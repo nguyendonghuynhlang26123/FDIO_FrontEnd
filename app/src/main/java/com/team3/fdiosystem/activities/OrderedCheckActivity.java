@@ -41,6 +41,7 @@ public class OrderedCheckActivity extends AppCompatActivity {
         loadDataFromStore();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void loadDataFromStore() {
         ArrayList<OrderItemModel> orderedList = Store.get_instance().getOrderedList();
         ArrayList<OrderCheckItemVM> vms = new ArrayList<>();

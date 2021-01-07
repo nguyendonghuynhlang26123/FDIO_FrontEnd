@@ -7,8 +7,8 @@
             type="com.team3.fdiosystem.viewmodels.OrderCheckItemVM" />
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="450dp"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="20dp"
         card_view:cardElevation="16dp"
@@ -16,12 +16,11 @@
         android:layout_marginTop="6dp"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="6dp"
-        card_view:contentPaddingLeft="16dp"
+
         android:focusable="true">
         <GridLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
+
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:columnCount="2"
@@ -30,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/thumb_img"
-                android:layout_width="192dp"
-                android:layout_height="192dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
                 imgOrderCheckItem="@{vm.orderCheckImg}" />
             <LinearLayout
@@ -53,11 +52,14 @@
                     android:textSize="20sp"
                     android:layout_marginTop="20dp"/>
 
-                <TextView
+                <RadioButton
+                    android:checked="true"
+                    android:clickable="false"
                     android:id="@+id/ordered_item_stat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:text="@{vm.orderCheckStatus}"
                     StatusColor="@{vm.orderCheckStatus}"
                     android:textSize="20sp" />
 
@@ -66,5 +68,5 @@
 
         </GridLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
