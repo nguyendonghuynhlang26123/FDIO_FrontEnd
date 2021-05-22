@@ -48,6 +48,7 @@ public class CartActivity extends AppCompatActivity {
                     total_price, onDialogDimissed());
             dialog.show(getSupportFragmentManager(),dialog.getTag());
         });
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

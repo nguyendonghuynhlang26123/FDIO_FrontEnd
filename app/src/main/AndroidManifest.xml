@@ -12,8 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FDIOSystem"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".activities.MenuHomepage"/>
+        <activity android:name=".activities.MenuHomepage" />
         <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,20 +20,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.MenuContent" android:parentActivityName=".activities.MenuHomepage"/>
-        <activity android:name=".activities.OrderedCheckActivity" android:parentActivityName=".activities.MenuHomepage"/>
+        <activity
+            android:name=".activities.MenuContent"
+            android:parentActivityName=".activities.MenuHomepage" />
+        <activity
+            android:name=".activities.OrderedCheckActivity"
+            android:parentActivityName=".activities.MenuHomepage" />
         <activity android:name=".activities.ManagementHomepageActivity" />
-        <activity android:name=".activities.AdminMenuActivity"  android:parentActivityName=".activities.ManagementHomepageActivity"/>
-        <activity android:name=".activities.AdminMenuContentActivity" android:parentActivityName=".activities.AdminMenuActivity"
-            android:windowSoftInputMode="adjustPan"/>
-<!--        <activity android:name=".activities.MenuItemModifyForm" />-->
-<!--        <activity android:name=".activities.MenuActivity" />-->
-<!--        <activity android:name=".activities.MainActivity" />-->
+        <activity
+            android:name=".activities.AdminMenuActivity"
+            android:parentActivityName=".activities.ManagementHomepageActivity" />
+        <activity
+            android:name=".activities.AdminMenuContentActivity"
+            android:parentActivityName=".activities.AdminMenuActivity"
+            android:windowSoftInputMode="adjustPan" /> <!-- <activity android:name=".activities.MenuItemModifyForm" /> -->
+        <!-- <activity android:name=".activities.MenuActivity" /> -->
+        <!-- <activity android:name=".activities.MainActivity" /> -->
         <activity android:name=".activities.DemoActivity" />
-        <activity android:name=".activities.LoginActivity" android:parentActivityName=".activities.MenuHomepage"/>
-        <activity android:name=".activities.CartActivity" android:parentActivityName=".activities.MenuHomepage"/>
-        <activity android:name=".activities.FoodDetailActivity" android:parentActivityName=".activities.MenuHomepage"/>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.MenuHomepage" />
+        <activity
+            android:name=".activities.CartActivity"
+            android:parentActivityName=".activities.MenuHomepage" />
+        <activity
+            android:name=".activities.FoodDetailActivity"
+            android:parentActivityName=".activities.MenuHomepage" />
 
         <service
             android:name=".repositories.services.MyFirebaseService"

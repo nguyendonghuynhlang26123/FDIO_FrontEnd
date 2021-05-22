@@ -2,22 +2,28 @@ package com.team3.fdiosystem.viewmodels.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.team3.fdiosystem.R;
+import com.team3.fdiosystem.Utils;
 import com.team3.fdiosystem.activities.FoodDetailActivity;
 import com.team3.fdiosystem.databinding.RecyclerItemBinding;
 import com.team3.fdiosystem.viewmodels.Event;
 import com.team3.fdiosystem.viewmodels.FoodItemVM;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.FoodItemViewHolder> {
     private Context context;
@@ -46,6 +52,7 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.FoodIt
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(@NonNull FoodItemViewHolder holder, int position) {
         FoodItemVM item = items.get(position);
@@ -56,6 +63,18 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.FoodIt
             intent.putExtra("id", item.getId());
             context.startActivity(intent);
         });
+        if(position == getItemCount()/2){
+            holder.itemBinding.promotionTag.setVisibility(View.VISIBLE);
+            long sale = 0;
+            try {
+                sale = (long) Utils.format.parse(item.getPrice())/2;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+//            int sale = Integer.parseInt(item.getPrice())/2;
+            holder.itemBinding.menuItemPrice.setText(Utils.format.format(sale));
+            holder.itemBinding.menuItemPrice.setTextColor(context.getResources().getColor(R.color.red));
+        } else holder.itemBinding.promotionTag.setVisibility(View.INVISIBLE);
     }
 
     @Override

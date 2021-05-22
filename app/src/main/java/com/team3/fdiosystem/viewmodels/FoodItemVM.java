@@ -19,6 +19,7 @@ public class FoodItemVM extends BaseObservable {
     FoodModel model;
     private MutableLiveData<String> actionBtnCallback;
 
+
     public FoodItemVM(FoodModel model) {
         this.model = model;
         this.actionBtnCallback = new MutableLiveData<>();

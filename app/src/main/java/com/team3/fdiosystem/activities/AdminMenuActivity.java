@@ -92,6 +92,7 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     void refreshRendering(){
         vm = new MenuHompageVM(AdminMenuActivity.this);
         menuAdapter = new AsymmetricGridViewAdapter(this, menuView, vm.getMenuAdapter());
@@ -122,6 +123,7 @@ public class AdminMenuActivity extends AppCompatActivity implements MenuModifyDi
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onFinished() {
         refreshRendering();

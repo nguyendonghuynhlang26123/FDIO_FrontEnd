@@ -26,13 +26,15 @@ public class ManagementHomepageActivity extends AppCompatActivity {
 
         Button btn = findViewById(R.id.promo_manage);
         btn.setOnClickListener(v -> {
-            DialogFragment confirm = new ConfirmDialog("This feature is still being developed!\n" +
-                    "Sorry for these inconvenience!", ()->{});
-            confirm.show(getSupportFragmentManager(), "Confirm");
+//            DialogFragment confirm = new ConfirmDialog("This feature is still being developed!\n" +
+//                    "Sorry for these inconvenience!", ()->{});
+//            confirm.show(getSupportFragmentManager(), "Confirm");
+//            Intent i = new Intent(ManagementHomepageActivity.this, PromotionActivity.class);
+//            startActivity(i);
         });
         findViewById(R.id.menu_manage).setOnClickListener(v -> {
-                Intent i = new Intent(ManagementHomepageActivity.this, AdminMenuActivity.class);
-                ManagementHomepageActivity.this.startActivity(i);
+            Intent i = new Intent(ManagementHomepageActivity.this, AdminMenuActivity.class);
+            ManagementHomepageActivity.this.startActivity(i);
         });
         findViewById(R.id.history_manage).setOnClickListener(v -> {
             DialogFragment confirm = new ConfirmDialog("This feature is still being developed!\n" +

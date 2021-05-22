@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body().getStatus().equals("successful")){
                     vm.setLoginSpinner(false);
                     Store.get_instance().setMode(Utils.ADMIN_MODE);
-                    Intent i = new Intent(LoginActivity.this, ManagementHomepageActivity.class);
+                    Intent i = new Intent(LoginActivity.this, AdminMenuActivity.class);
                     LoginActivity.this.startActivity(i);
                 }
                 else {
